@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watchlist — Kanban de Sprints</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --card: #1a1e29;
+    --border: #252a38;
+    --accent: #e8c547;
+    --accent2: #5b8dee;
+    --accent3: #e85b8d;
+    --text: #e4e8f0;
+    --muted: #6b7280;
+    --todo-col: #1e2030;
+    --doing-col: #1e2a1e;
+    --done-col: #1a1f2e;
+
+    --s1: #6366f1; --s2: #06b6d4; --s3: #8b5cf6;
+    --s4: #f59e0b; --s5: #ec4899; --s6: #10b981;
+    --s7: #f97316; --s8: #3b82f6; --s9: #a855f7; --s10: #14b8a6; --s11: #ef4444;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  header {
+    max-width: 1400px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+  }
+
+  .header-left h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.6rem;
+    color: var(--accent);
+    letter-spacing: -1px;
+  }
+
+  .header-left p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  .progress-bar-wrap {
+    max-width: 1400px;
+    margin: 0 auto 2rem;
+    background: var(--border);
+    border-radius: 999px;
+    height: 6px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: 999px;
+    transition: width 0.6s ease;
+    width: 0%;
+  }
+
+  .progress-label {
+    max-width: 1400px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .board {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .column {
+    background: var(--surface);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .col-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .col-count {
+    background: var(--border);
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Sprint Card */
+  .sprint-card {
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sprint-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--sprint-color, var(--accent));
+    border-radius: 10px 0 0 10px;
+  }
+
+  .sprint-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--sprint-color, var(--accent));
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  }
+
+  .sprint-card.done {
+    opacity: 0.6;
+  }
+
+  .sprint-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+  }
+
+  .sprint-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--sprint-color, var(--accent));
+    letter-spacing: 1px;
+  }
+
+  .sprint-dates {
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .sprint-title {
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.4;
+    cursor: pointer;
+    transition: color 0.15s;
+    user-select: none;
+  }
+
+  .task:hover { color: var(--text); }
+
+  .task-check {
+    width: 14px; height: 14px;
+    border-radius: 4px;
+    border: 1.5px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+    background: transparent;
+  }
+
+  .task.checked .task-check {
+    background: var(--sprint-color, var(--accent));
+    border-color: var(--sprint-color, var(--accent));
+  }
+
+  .task.checked .task-check::after {
+    content: '✓';
+    font-size: 9px;
+    color: #000;
+    font-weight: bold;
+  }
+
+  .task.checked span {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  .ids {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.75rem;
+  }
+
+  .id-badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.65rem;
+    font-family: 'Space Mono', monospace;
+    color: var(--muted);
+  }
+
+  .move-btn {
+    margin-top: 0.8rem;
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+
+  .move-btn:hover {
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    border-color: var(--sprint-color, var(--accent));
+  }
+
+  @media (max-width: 900px) {
+    .board { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>🎬 Watchlist — Sprint Board</h1>
+    <p>Disciplina de Desenvolvimento Web · Prof. Roni Fabio Banaszewski</p>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#6366f1"></div> Design/Layout</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div> JS/Formulários</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> APIs</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div> Deploy/Defesa</div>
+  </div>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar-fill" id="progressFill"></div>
+</div>
+<div class="progress-label">
+  <span id="progressText">0 tarefas concluídas</span>
+  <span id="progressPct">0%</span>
+</div>
+
+<div class="board">
+  <!-- A FAZER -->
+  <div class="column" id="col-todo">
+    <div class="col-header">
+      <span class="col-title">📋 A Fazer</span>
+      <span class="col-count" id="count-todo">0</span>
+    </div>
+  </div>
+
+  <!-- EM ANDAMENTO -->
+  <div class="column" id="col-doing">
+    <div class="col-header">
+      <span class="col-title">⚡ Em Andamento</span>
+      <span class="col-count" id="count-doing">0</span>
+    </div>
+  </div>
+
+  <!-- CONCLUÍDO -->
+  <div class="column" id="col-done">
+    <div class="col-header">
+      <span class="col-title">✅ Concluído</span>
+      <span class="col-count" id="count-done">0</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const sprints = [
+  {
+    id: 1, color: 'var(--s1)',
+    title: 'Fundação',
+    dates: 'até 22/03',
+    status: 'todo',
+    ids: [],
+    tasks: [
+      'Criar repositório no GitHub com .gitignore',
+      'Montar README.md com checklist completo',
+      'Definir Design System (cores, tipografia, ícones)',
+    ]
+  },
+  {
+    id: 2, color: 'var(--s2)',
+    title: 'Prototipação no Figma',
+    dates: 'até 05/04',
+    status: 'todo',
+    ids: ['ID 01'],
+    tasks: [
+      'Prototipar tela Home (mobile e desktop)',
+      'Prototipar tela Minha Lista (mobile e desktop)',
+      'Prototipar tela Cadastro (mobile e desktop)',
+      'Revisar Design System com base no protótipo',
+    ]
+  },
+  {
+    id: 3, color: 'var(--s3)',
+    title: 'Ambiente e Estrutura',
+    dates: 'até 05/04',
+    status: 'todo',
+    ids: ['ID 15', 'ID 16', 'ID 17', 'ID 18', 'ID 19'],
+    tasks: [
+      'Configurar Node.js e NPM',
+      'Configurar ESLint e Prettier',
+      'Criar estrutura de pastas do projeto',
+      'Criar os 3 arquivos HTML base',
+    ]
+  },
+  {
+    id: 4, color: 'var(--s4)',
+    title: 'Layout e Responsividade',
+    dates: 'até 03/05',
+    status: 'todo',
+    ids: ['ID 02', 'ID 03', 'ID 05', 'ID 08', 'ID 09'],
+    tasks: [
+      'Layout com CSS puro (Flexbox/Grid)',
+      'Layout responsivo com Bootstrap',
+      'Unidades relativas (vw, vh, %, rem)',
+      'Tipografia responsiva com clamp()',
+      'Responsividade de imagens com object-fit',
+    ]
+  },
+  {
+    id: 5, color: 'var(--s5)',
+    title: 'Componentes e Sass',
+    dates: 'até 10/05',
+    status: 'todo',
+    ids: ['ID 04', 'ID 06', 'ID 07'],
+    tasks: [
+      'Componentes Bootstrap: cards, buttons, modal',
+      'Carousel Bootstrap na Home',
+      'Implementar Sass (SCSS) com variáveis e mixins',
+      'Aplicar Design System em todas as páginas',
+    ]
+  },
+  {
+    id: 6, color: 'var(--s6)',
+    title: 'Formulários e Validação',
+    dates: 'até 17/05',
+    status: 'todo',
+    ids: ['ID 11', 'ID 12', 'ID 13'],
+    tasks: [
+      'Formulário de cadastro com campos obrigatórios',
+      'Validação HTML nativa com mensagens de erro',
+      'Checkboxes, radio buttons e selects',
+      'Validações customizadas com REGEX',
+    ]
+  },
+  {
+    id: 7, color: 'var(--s7)',
+    title: 'Web Storage e jQuery',
+    dates: 'até 24/05',
+    status: 'todo',
+    ids: ['ID 14', 'ID 20', 'ID 21'],
+    tasks: [
+      'Persistência com localStorage',
+      'Manipulação do DOM com jQuery',
+      'Eventos e animações com jQuery',
+      'Integrar jQuery Mask Plugin no formulário',
+    ]
+  },
+  {
+    id: 8, color: 'var(--s8)',
+    title: 'OMDb API',
+    dates: 'até 31/05',
+    status: 'todo',
+    ids: ['ID 24'],
+    tasks: [
+      'Integrar OMDb API na página Home',
+      'Exibir pôster, título e sinopse',
+      'Tratamento de erros na requisição',
+    ]
+  },
+  {
+    id: 9, color: 'var(--s9)',
+    title: 'JSON Server',
+    dates: 'até 14/06',
+    status: 'todo',
+    ids: ['ID 22', 'ID 23'],
+    tasks: [
+      'Configurar JSON Server com entidades',
+      'POST: persistir dados do formulário',
+      'GET: listar itens na página Minha Lista',
+      'DELETE/PUT: editar e excluir itens (bônus)',
+    ]
+  },
+  {
+    id: 10, color: 'var(--s10)',
+    title: 'Deploy e Polimento',
+    dates: 'até 23/06',
+    status: 'todo',
+    ids: ['ID 10'],
+    tasks: [
+      'Otimizar imagens com WebP e srcset',
+      'Deploy no GitHub Pages com CDN',
+      'Revisar README, checklist e ESLint',
+      'Gravar vídeo de apresentação (pitch)',
+    ]
+  },
+  {
+    id: 11, color: 'var(--s11)',
+    title: 'Defesa Individual',
+    dates: '29–30/06',
+    status: 'todo',
+    ids: [],
+    tasks: [
+      'Apresentar projeto ao professor',
+      'Demonstrar checklist implementado',
+      'Explicar decisões técnicas do projeto',
+    ]
+  },
+];
+
+// Load state from localStorage
+function loadState() {
+  try { return JSON.parse(localStorage.getItem('watchlist-kanban') || '{}'); } catch { return {}; }
+}
+
+function saveState(state) {
+  localStorage.setItem('watchlist-kanban', JSON.stringify(state));
+}
+
+let state = loadState();
+
+// Init state
+sprints.forEach(s => {
+  if (!state[s.id]) state[s.id] = { status: s.status, checked: {} };
+});
+
+function renderBoard() {
+  const cols = { todo: [], doing: [], done: [] };
+  sprints.forEach(s => {
+    const st = state[s.id].status;
+    cols[st].push(s);
+  });
+
+  ['todo','doing','done'].forEach(col => {
+    const container = document.getElementById('col-' + col);
+    // Remove cards (keep header)
+    Array.from(container.children).slice(1).forEach(el => el.remove());
+    cols[col].forEach(s => container.appendChild(buildCard(s)));
+    document.getElementById('count-' + col).textContent = cols[col].length;
+  });
+
+  updateProgress();
+}
+
+function buildCard(s) {
+  const st = state[s.id];
+  const card = document.createElement('div');
+  card.className = 'sprint-card' + (st.status === 'done' ? ' done' : '');
+  card.style.setProperty('--sprint-color', s.color);
+
+  const totalTasks = s.tasks.length;
+  const checkedCount = Object.values(st.checked).filter(Boolean).length;
+
+  let nextLabel = st.status === 'todo' ? '→ Mover para Em Andamento'
+                : st.status === 'doing' ? '→ Mover para Concluído'
+                : '↩ Mover para A Fazer';
+
+  const idBadges = s.ids.map(id => `<span class="id-badge">${id}</span>`).join('');
+
+  card.innerHTML = `
+    <div class="sprint-header">
+      <span class="sprint-number">SPRINT ${String(s.id).padStart(2,'0')}</span>
+      <span class="sprint-dates">${s.dates}</span>
+    </div>
+    <div class="sprint-title">${s.title}</div>
+    <div class="tasks">
+      ${s.tasks.map((t, i) => `
+        <div class="task ${st.checked[i] ? 'checked' : ''}" data-sprint="${s.id}" data-task="${i}">
+          <div class="task-check"></div>
+          <span>${t}</span>
+        </div>
+      `).join('')}
+    </div>
+    ${idBadges ? `<div class="ids">${idBadges}</div>` : ''}
+    <button class="move-btn" data-sprint="${s.id}">${nextLabel}</button>
+  `;
+
+  card.querySelectorAll('.task').forEach(taskEl => {
+    taskEl.addEventListener('click', (e) => {
+      const sid = +taskEl.dataset.sprint;
+      const tid = +taskEl.dataset.task;
+      state[sid].checked[tid] = !state[sid].checked[tid];
+      saveState(state);
+      renderBoard();
+    });
+  });
+
+  card.querySelector('.move-btn').addEventListener('click', () => {
+    const sid = s.id;
+    const cur = state[sid].status;
+    state[sid].status = cur === 'todo' ? 'doing' : cur === 'doing' ? 'done' : 'todo';
+    saveState(state);
+    renderBoard();
+  });
+
+  return card;
+}
+
+function updateProgress() {
+  let total = 0, checked = 0;
+  sprints.forEach(s => {
+    total += s.tasks.length;
+    checked += Object.values(state[s.id].checked).filter(Boolean).length;
+  });
+  const pct = total ? Math.round(checked / total * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${checked} de ${total} tarefas concluídas`;
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+
+renderBoard();
+</script>
+</body>
+</html>
