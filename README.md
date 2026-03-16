@@ -145,8 +145,6 @@ npx json-server --watch db.json --port 3000
 
 ## 🖼️ Telas da Aplicação
 
-_Adicionar screenshots das telas após o desenvolvimento._
-
 | Home         | Minha Lista  | Cadastro     |
 | ------------ | ------------ | ------------ |
 | _screenshot_ | _screenshot_ | _screenshot_ |
