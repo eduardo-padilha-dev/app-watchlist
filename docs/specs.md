@@ -6,9 +6,9 @@ Este documento detalha a arquitetura técnica, o modelo de dados e os contratos 
 
 A aplicação possui duas entidades principais: **itens** (os filmes e séries salvos pelo usuário) e **generos** (lista de gêneros disponíveis para seleção no formulário).
 
-```
+```mermaid
 erDiagram
-  ITENS ||--o{ GENEROS : "references"
+  ITENS ||--o{ GENEROS : references
   ITENS {
     string id PK
     string titulo
