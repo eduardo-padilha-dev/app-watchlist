@@ -1,90 +1,56 @@
-# Design System Document: The Cinematic Canvas
+# Design System - Watchlist
 
-## 1. Overview & Creative North Star: "The Digital Curator"
-The objective of this design system is to transcend the "utility app" feel and position the application as a premium cinematic experience. Our Creative North Star is **"The Digital Curator."** 
+Neste projeto, utilizamos o Bootstrap 5 como framework CSS e aplicamos customizações para refletir a identidade visual da aplicação.
 
-Unlike generic management tools that rely on rigid grids and heavy borders, this system treats content as art. We break the "template" look through **intentional asymmetry**, where hero elements bleed into the margins, and **tonal depth**, where the interface feels like layered sheets of obsidian and frosted glass. By prioritizing negative space and high-contrast typography, we ensure that the film metadata feels editorial, not just functional.
+## 1. Framework Base
 
----
+- **Framework escolhido:** Bootstrap 5
+- **Motivação:** Oferece um sistema de grid responsivo e componentes prontos como cards, modais e carrosséis, agilizando o desenvolvimento e garantindo compatibilidade com diferentes tamanhos de tela.
 
-## 2. Colors & Surface Philosophy
-The palette is rooted in deep, ink-like tones to minimize eye strain and make movie poster colors "pop."
+## 2. Paleta de Cores
 
-### Brand & Functional Palettes
-*   **Primary (Electric Cyan):** `#6dddff` (Primary) / `#00d2fd` (Container). Used for the "Watch" actions and critical paths.
-*   **Secondary (Neon Violet):** `#ac89ff` (Secondary) / `#7000ff` (Container). Used for discovery, AI recommendations, and premium features.
-*   **Background:** `#0c0e12` (The foundation).
+As cores foram escolhidas para remeter à estética de cinema, com fundo escuro e destaque em âmbar.
 
-### The "No-Line" Rule
-**Explicit Instruction:** Designers are prohibited from using 1px solid borders to section off content. 
-*   Boundaries must be defined solely through background color shifts.
-*   Example: Use `surface-container-low` for a sidebar sitting on a `surface` background. The change in hex value is the "border."
+- **Cor Primária (Âmbar):** `#E8B44B`
+  - Uso: Botões de ação principal, ícones ativos e destaques. Remete à luz de projetores de cinema.
+- **Cor de Fundo:** `#0C0E13`
+  - Uso: Fundo de todas as páginas. Cria a sensação de sala escura.
+- **Cor de Superfície:** `#13161F`
+  - Uso: Fundo de cards, navbar e painéis.
+- **Cor de Sucesso:** `#4CAF82`
+  - Uso: Status "Concluído" e mensagens de validação positiva.
+- **Cor de Erro:** `#E85B5B`
+  - Uso: Mensagens de erro em formulários e botão de excluir.
+- **Cor de Info:** `#5B8DEE`
+  - Uso: Status "Quero Ver".
+- **Cor Neutra:** `#7A8099`
+  - Uso: Textos secundários e status "Abandonado".
 
-### Surface Hierarchy & Nesting
-Treat the UI as a physical stack.
-1.  **Bottom Layer:** `background` (#0c0e12) - The infinite void.
-2.  **Section Layer:** `surface-container-low` (#111318) - For grouping large content areas.
-3.  **Component Layer:** `surface-container` (#171a1f) - For standard cards and inputs.
-4.  **Elevated Layer:** `surface-container-highest` (#23262c) - For modals or active navigation items.
+### Cores de status dos itens
 
-### The "Glass & Gradient" Rule
-To achieve a signature look, floating headers and navigation bars must use **Glassmorphism**:
-*   **Background:** `surface` at 70% opacity.
-*   **Backdrop-blur:** 16px to 24px.
-*   **Glow:** Use a subtle linear gradient on primary CTAs (from `primary` to `primary_dim`) to give buttons a "lit-from-within" soul.
+Cada status da lista tem uma cor para facilitar a identificação visual:
 
----
+| Status | Cor |
+|--------|-----|
+| Assistindo | `#E8B44B` (âmbar) |
+| Concluído | `#4CAF82` (verde) |
+| Quero Ver | `#5B8DEE` (azul) |
+| Abandonado | `#7A8099` (cinza) |
 
-## 3. Typography: Editorial Authority
-We pair **Plus Jakarta Sans** for high-impact display with **Inter** for clinical interface precision.
+## 3. Tipografia
 
-*   **Display (Large/Med):** Used for movie titles. The 3.5rem size creates a sense of "Big Screen" scale.
-*   **Headline (Sm/Med):** Used for category titles (e.g., "Trending Now"). 
-*   **Body (Md/Lg):** Inter is the workhorse here. We use generous line-height (1.6) for movie synopses to maintain readability against dark backgrounds.
-*   **Labels:** Strict use of `label-md` (0.75rem) in `on-surface-variant` (#aaabb0) for metadata like "4K", "HDR", or "124 min".
+Importada via Google Fonts para dar uma identidade visual mais marcante:
 
----
+- **Títulos (H1, H2, nome do app):** `Bebas Neue, sans-serif` — fonte condensada e impactante, muito usada em cartazes de filmes.
+- **Textos corridos, botões e inputs:** `Outfit, sans-serif` (Peso: 400 e 600) — fonte moderna e de fácil leitura.
+- **Labels de formulário e dados como ano e duração:** `JetBrains Mono, monospace` — destaca informações técnicas do restante do texto.
 
-## 4. Elevation & Depth
-We replace traditional shadows with **Tonal Layering**.
+## 4. Diretrizes de Uso de Componentes
 
-*   **The Layering Principle:** Place a `surface-container-lowest` card on a `surface-container-low` section. This creates a soft, natural "recessed" or "lifted" look without visual clutter.
-*   **Ambient Shadows:** For "floating" elements like Detail Modals, use an extra-diffused shadow:
-    *   *Y: 20px, Blur: 40px, Color: rgba(0, 0, 0, 0.4).* 
-    *   Never use pure black shadows; use a tinted version of the background to simulate light absorption.
-*   **The "Ghost Border" Fallback:** If a border is required for accessibility (e.g., input focus), use `outline-variant` (#46484d) at **20% opacity**. 100% opaque borders are strictly forbidden.
+Regras para aplicação dos componentes do Bootstrap na aplicação:
 
----
-
-## 5. Components
-
-### Film Cards (The Hero)
-*   **Structure:** No dividers. Use `surface-container` with a `lg` (0.5rem) corner radius.
-*   **Interaction:** On hover, the card should scale (1.05x) and gain a subtle glow using `primary` at 10% opacity.
-*   **Metadata:** Use vertical white space (Spacing 4: 1rem) instead of lines to separate the title from the year/rating.
-
-### Buttons
-*   **Primary:** Solid `primary` background. `on-primary` text. No border.
-*   **Secondary (The Ghost):** `surface-tint` at 10% opacity background with `primary` text. This feels "integrated" into the dark theme.
-*   **Corner Radius:** Always `full` (pill-shaped) for CTAs to contrast against the rectangular movie posters.
-
-### Inputs & Search
-*   **Style:** `surface-container-highest` background.
-*   **Focus State:** Instead of a thick border, use a subtle glow (`primary` shadow with 4px blur) and transition the icon color to `primary`.
-
-### Navigation Rails
-*   Instead of a top bar, use a side rail on desktop to maximize vertical space for posters. Use `surface-container-low` with no border, separating it from the main feed purely through tone.
-
----
-
-## 6. Do's and Don'ts
-
-### Do:
-*   **Use Asymmetry:** Let the main hero movie poster bleed off the right edge of the screen on desktop to suggest "more content."
-*   **Embrace Negative Space:** Use Spacing 10 (2.5rem) or 12 (3rem) between sections to let the posters breathe.
-*   **Color-Pill Metadata:** Use small `secondary_container` chips for genres (e.g., "Sci-Fi") to add splashes of neon across the dark UI.
-
-### Don't:
-*   **Don't use Dividers:** Never use `<hr>` or border-bottom. Use a 2rem vertical gap or a slight surface color change.
-*   **Don't use Pure White:** Avoid `#FFFFFF` for text. Use `on-surface` (#f6f6fc) to reduce "halation" (the glowing effect of white text on black screens).
-*   **Don't Over-round:** Keep card corners at `lg` (0.5rem). Making them too round (`xl` or `full`) makes the application look like a toy rather than a premium cinema tool.
+- **Botões (`.btn`):** Ações principais como "Adicionar" e "Salvar" usam `.btn-primary` com a cor âmbar. Ações de cancelar usam `.btn-outline-secondary` para não chamar atenção. Ações de excluir usam `.btn-outline-danger`.
+- **Cards (`.card`):** Usados para exibir os filmes e séries da lista, com poster, título, ano e badge de status. No hover, aplicar uma leve sombra para indicar interatividade.
+- **Formulários (`.form-control`):** Os labels ficam em letras maiúsculas com a fonte mono. Campos com erro mostram borda vermelha e mensagem abaixo. Campos válidos mostram borda verde.
+- **Modal (`.modal`):** Usado para confirmar exclusão de um item da lista. O botão de cancelar fica à esquerda e o de confirmar à direita.
+- **Toast (`.toast`):** Aparece no canto inferior direito após ações como salvar ou excluir um item. Some automaticamente após 3 segundos.
