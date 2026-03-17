@@ -6,23 +6,25 @@ Este documento detalha a arquitetura técnica, o modelo de dados e os contratos 
 
 A aplicação possui duas entidades principais: **itens** (os filmes e séries salvos pelo usuário) e **generos** (lista de gêneros disponíveis para seleção no formulário).
 
-```
-┌─────────────────────────┐         ┌──────────────────┐
-│          itens          │         │     generos      │
-├─────────────────────────┤         ├──────────────────┤
-│ id          (string)    │         │ id   (string)    │
-│ titulo      (string)    │         │ nome (string)    │
-│ tipo        (string)    │         └──────────────────┘
-│ genero      (string)    │◄── usa ─────────────────────
-│ plataforma  (string)    │
-│ status      (string)    │
-│ nota        (number)    │
-│ comentario  (string)    │
-│ poster      (string)    │
-│ ano         (string)    │
-│ dataCadastro(string)    │
-└─────────────────────────┘
-```
+erDiagram
+  ITENS ||--o{ GENEROS : "references"
+  ITENS {
+    string id PK
+    string titulo
+    string tipo
+    string genero FK
+    string plataforma
+    string status
+    number nota
+    string comentario
+    string poster
+    string ano
+    string dataCadastro
+  }
+  GENEROS {
+    string id PK
+    string nome
+  }
 
 ## 2. Dicionário de Dados
 
