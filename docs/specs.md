@@ -6,6 +6,7 @@ Este documento detalha a arquitetura técnica, o modelo de dados e os contratos 
 
 A aplicação possui duas entidades principais: **itens** (os filmes e séries salvos pelo usuário) e **generos** (lista de gêneros disponíveis para seleção no formulário).
 
+```
 erDiagram
   ITENS ||--o{ GENEROS : "references"
   ITENS {
@@ -25,6 +26,7 @@ erDiagram
     string id PK
     string nome
   }
+```
 
 ## 2. Dicionário de Dados
 
