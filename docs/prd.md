@@ -1,5 +1,13 @@
 # Product Requirements Document (PRD) - Watchlist
- 
+
+## 👤 Identificação / Autor
+
+**Nome:** Eduardo Padilha do Nascimento
+**RA:** a2598744
+**Curso:**  Sistemas para Internet 
+**Disciplina:** Desenvolvimento de Páginas Web com Framework e CSS 
+**Professor:** Dr. Roni Fabio Banaszewski
+
 ## 1. Visão Geral e Objetivo
  
 O Watchlist é uma aplicação web para gerenciar filmes e séries. O usuário pode buscar títulos, adicioná-los à sua lista pessoal e organizar o que já assistiu, está assistindo ou ainda quer ver.
