@@ -20,8 +20,7 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 | Recurso                            | Link                     |
 | ---------------------------------- | ------------------------ |
-| 🎨 Protótipo no Figma              | _[link do Figma]_        |
-| 🖌️ Design System                   | _[link do documento]_    |
+| 🎨 Protótipo no Stitch              | https://stitch.withgoogle.com/projects/1776335920136709795       |
 | 🌐 Site em Produção (GitHub Pages) | _[link do GitHub Pages]_ |
 
 ---
@@ -42,7 +41,7 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ### RA1 — Frameworks CSS e Layouts Responsivos
 
-- [ ] **ID 01** — Protótipo de interfaces mobile e desktop no Figma (ou Stitch)
+- [X] **ID 01** — Protótipo de interfaces mobile e desktop no Figma (ou Stitch)
 - [ ] **ID 02** — Layout responsivo com Bootstrap usando Flexbox/Grid do framework
 - [ ] **ID 03** — Layout responsivo com CSS puro usando Flexbox ou Grid Layout
 - [ ] **ID 04** — Uso de componentes prontos do Bootstrap (cards, buttons, modals, carousel)
