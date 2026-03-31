@@ -63,16 +63,16 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ### RA3 — Ferramentas de Desenvolvimento
 
-- [ ] **ID 15** — Ambiente configurado com Node.js e NPM
-- [ ] **ID 16** — Boas práticas de versionamento no Git/GitHub (branches, `.gitignore`)
-- [ ] **ID 17** — README.md padronizado conforme template da disciplina com checklist preenchido
-- [ ] **ID 18** — Arquivos do projeto organizados de forma modular
-- [ ] **ID 19** — Linters e formatadores configurados (ESLint, Prettier)
+- [X] **ID 15** — Ambiente configurado com Node.js e NPM
+- [X] **ID 16** — Boas práticas de versionamento no Git/GitHub (branches, `.gitignore`)
+- [X] **ID 17** — README.md padronizado conforme template da disciplina com checklist preenchido
+- [X] **ID 18** — Arquivos do projeto organizados de forma modular
+- [X] **ID 19** — Linters e formatadores configurados (ESLint, Prettier)
 
 ### RA4 — Bibliotecas JavaScript
 
-- [ ] **ID 20** — jQuery para manipulação do DOM e interatividade (eventos, animações)
-- [ ] **ID 21** — Plugin jQuery integrado e configurado (ex: jQuery Mask Plugin)
+- [X] **ID 20** — jQuery para manipulação do DOM e interatividade (eventos, animações)
+- [X] **ID 21** — Plugin jQuery integrado e configurado (ex: jQuery Mask Plugin)
 
 ### RA5 — Requisições Assíncronas
 
