@@ -28,12 +28,14 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 ## 🛠️ Tecnologias
 
 - **Framework CSS:** Bootstrap 5
+  - Escolhido pela documentação completa, sistema de grid responsivo de 12 colunas e componentes prontos como cards, modais e carousel — todos usados diretamente no projeto. O repositório oficial é ativamente mantido (MIT License).
+- **API Pública:** OMDb API (https://www.omdbapi.com/)
+  - Permite buscar informações reais de filmes e séries (pôster, título, ano, sinopse) pelo nome. Gratuita para até 1.000 requisições/dia, sem necessidade de OAuth.
 - **Dependências JavaScript:**
   - jQuery
   - jQuery Mask Plugin
-  - Axios (ou Fetch API nativa)
+  - Fetch API (nativa)
   - JSON Server (API fake local)
-  - OMDb API (API pública)
 
 ---
 

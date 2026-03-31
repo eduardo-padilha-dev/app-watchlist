@@ -2,6 +2,16 @@
 
 Este documento detalha a arquitetura técnica, o modelo de dados e os contratos de API (via JSON Server) necessários para o funcionamento da aplicação Watchlist.
 
+## 0. Versões das Tecnologias
+
+| Tecnologia | Versão | Observação |
+|------------|--------|------------|
+| Bootstrap | v5.3.3 | Via CDN |
+| jQuery | v3.7.1 | Via CDN |
+| jQuery Mask Plugin | v1.14.16 | Via CDN |
+| JSON Server | v0.17.4 | Instalado via NPM |
+| OMDb API | v1 | Chave gratuita em omdbapi.com |
+
 ## 1. Modelo de Dados (Diagrama ER)
 
 A aplicação possui duas entidades principais: **itens** (os filmes e séries salvos pelo usuário) e **generos** (lista de gêneros disponíveis para seleção no formulário).
