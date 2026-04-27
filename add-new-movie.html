@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Cinema Âmbar</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- TopNavBar -->
+<header class="fixed-top glass-nav w-100 shadow-lg">
+    <nav class="navbar navbar-expand-md px-3 px-md-4 py-3">
+        <div class="container-fluid">
+            <a class="navbar-brand font-bebas fs-3 fw-bold text-primary-custom text-uppercase m-0" href="/home.html">WATCHLIST</a>
+            
+            <button class="navbar-toggler border-0 shadow-none text-primary-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+
+            <div class="collapse navbar-collapse align-items-center" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-3 mb-md-0 gap-2 gap-md-4 align-items-md-center font-outfit text-center text-md-start">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom py-1" href="/home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom py-1" href="/collection.html">Coleção</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom py-1 active" href="/add-new-movie.html">Adicionar</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow-1 d-flex align-items-center justify-content-center position-relative overflow-hidden pt-5 mt-5 pb-5 px-3">
+    <!-- Form Card -->
+    <div class="w-100 bg-surface rounded-4 shadow-lg p-4 p-md-5 position-relative z-1 max-w-672px">
+        <div class="mb-4 text-center text-md-start">
+            <h1 class="font-bebas text-primary-custom text-uppercase display-5 mb-2">Novo Conteúdo</h1>
+            <p class="font-outfit text-on-surface-variant mb-0 small">Adicione uma nova obra prima ao seu arquivo cinematográfico pessoal.</p>
+        </div>
+
+        <form>
+            <!-- Título da Obra -->
+            <div class="mb-4">
+                <label for="titulo" class="form-label font-mono text-uppercase text-on-surface-variant small tracking-widest mb-2 letter-spacing-01 fs-075rem">Título da Obra</label>
+                <input type="text" class="form-control rounded-3 p-3 font-outfit" id="titulo" placeholder="Ex: O Sétimo Selo" required>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <!-- Tipo -->
+                <div class="col-md-6">
+                    <label for="tipo" class="form-label font-mono text-uppercase text-on-surface-variant small tracking-widest mb-2 letter-spacing-01 fs-075rem">Tipo</label>
+                    <select class="form-select rounded-3 p-3 font-outfit" id="tipo">
+                        <option value="filme">Filme</option>
+                        <option value="serie">Série</option>
+                        <option value="documentario">Documentário</option>
+                        <option value="curta">Curta-metragem</option>
+                    </select>
+                </div>
+                <!-- Status -->
+                <div class="col-md-6">
+                    <label for="status" class="form-label font-mono text-uppercase text-on-surface-variant small tracking-widest mb-2 letter-spacing-01 fs-075rem">Status</label>
+                    <select class="form-select rounded-3 p-3 font-outfit" id="status">
+                        <option value="quero-ver">Quero Ver</option>
+                        <option value="assistindo">Assistindo</option>
+                        <option value="concluido">Concluído</option>
+                        <option value="abandonado">Abandonado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <!-- Streaming -->
+                <div class="col-md-6">
+                    <label for="streaming" class="form-label font-mono text-uppercase text-on-surface-variant small tracking-widest mb-2 letter-spacing-01 fs-075rem">Streaming</label>
+                    <select class="form-select rounded-3 p-3 font-outfit" id="streaming">
+                        <option value="netflix">Netflix</option>
+                        <option value="prime">Prime Video</option>
+                        <option value="mubi">MUBI</option>
+                        <option value="hbo">HBO Max</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                <!-- Sua Nota -->
+                <div class="col-md-6">
+                    <label for="nota" class="form-label font-mono text-uppercase text-on-surface-variant small tracking-widest mb-2 letter-spacing-01 fs-075rem">Sua Nota</label>
+                    <div class="position-relative border-ghost border-ghost-focus rounded-3 bg-surface-high">
+                        <input type="number" class="form-control rounded-3 p-3 pe-5 font-outfit border-0 bg-transparent" id="nota" min="0" max="10" step="0.1" placeholder="0.0 a 10.0">
+                        <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-primary-custom icon-fill">star</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sinopse Pessoal -->
+            <div class="mb-4">
+                <label for="sinopse" class="form-label font-mono text-uppercase text-on-surface-variant small tracking-widest mb-2 letter-spacing-01 fs-075rem">Sinopse Pessoal</label>
+                <textarea class="form-control rounded-3 p-3 font-outfit" id="sinopse" rows="4" placeholder="Escreva suas impressões sobre a obra..."></textarea>
+            </div>
+
+            <!-- Action Button -->
+            <div class="pt-3">
+                <button type="submit" class="btn btn-primary-custom w-100 py-3 rounded-3 d-flex align-items-center justify-content-center gap-2">
+                    <span class="font-outfit text-uppercase">Salvar na lista</span>
+                    <span class="material-symbols-outlined">movie</span>
+                </button>
+                <div class="text-center mt-4">
+                    <a href="/home.html" class="text-decoration-none font-outfit text-on-surface-variant small opacity-70">Cancelar e voltar para a lista</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-lowest border-top border-secondary border-opacity-10 mt-auto">
+    <div class="container py-5">
+        <div class="row align-items-center text-center text-md-start">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="font-bebas fs-5 text-primary-container mb-2">WATCHLIST</div>
+                <div class="font-mono fs-10px text-color-footer letter-spacing-01">© 2026 - Todos os direitos reservados</div>
+            </div>
+            <div class="col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end gap-3 gap-md-4 font-outfit small">
+                <a href="#" class="text-decoration-none text-secondary">Política de Privacidade</a>
+                <a href="#" class="text-decoration-none text-secondary">Termos de Serviço</a>
+                <a href="#" class="text-decoration-none text-secondary">Suporte e Contato</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap 5.3 JS Bundle -->
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
