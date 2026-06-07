@@ -18,15 +18,20 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "json-server --watch db.json --port 3001"
+    "start": "json-server --watch db.json --port 3001",
+    "lint": "eslint assets/js/**/*.js",
+    "format": "prettier --write \"**/*.{html,css,js}\""
   },
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "dotenv": "^17.3.1",
     "jquery": "^4.0.0",
     "json-server": "^0.17.0",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5"
   }
 }

@@ -1,219 +1,323 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR" data-bs-theme="dark">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Lista - Cinema Âmbar</title>
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    
-</head>
-<body class="d-flex flex-column min-vh-100 bg-surface-lowest text-on-surface">
-
-<!-- TopNavBar -->
-<header class="fixed-top glass-nav w-100 shadow-lg">
-    <nav class="navbar navbar-expand-md px-3 px-md-4 py-3">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minha Lista</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body class="d-flex flex-column min-vh-100 bg-surface-lowest text-on-surface">
+    <header class="fixed-top glass-nav w-100 shadow-lg">
+      <nav class="navbar navbar-expand-md px-3 px-md-4 py-3">
         <div class="container-fluid">
-            <a class="navbar-brand font-bebas fs-3 fw-bold text-primary-custom text-uppercase m-0" href="/home.html">WATCHLIST</a>
-            
-            <button class="navbar-toggler border-0 shadow-none text-primary-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
+          <a
+            class="navbar-brand font-bebas fs-3 fw-bold text-primary-custom text-uppercase m-0"
+            href="/home.html"
+            >WATCHLIST</a
+          >
 
-            <div class="collapse navbar-collapse align-items-center" id="navbarContent">
-                <ul class="navbar-nav mx-auto mb-3 mb-md-0 gap-2 gap-md-4 align-items-md-center font-outfit text-center text-md-start">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom py-1" href="/home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom py-1 active" href="/collection.html">Coleção</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom py-1" href="/add-new-movie.html">Adicionar</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
+          <button
+            class="navbar-toggler border-0 shadow-none text-primary-custom"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+            aria-controls="navbarContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
 
-<main class="flex-grow-1 container-fluid px-4 px-md-5 pt-5 mt-5 pb-5 max-w-1280px">
-    <!-- Header -->
-    <header class="mb-5 mt-4">
-        <h1 class="font-bebas text-on-surface mb-4 display-3 letter-spacing-neg">Minha Coleção</h1>
-        <!-- Filters -->
-        <div class="d-flex flex-wrap gap-3 align-items-center">
-            <button class="btn filter-btn rounded-pill px-4 py-2 fw-medium">Todos</button>
-            <button class="btn filter-btn-amber rounded-pill px-4 py-2 fw-bold">Assistindo</button>
-            <button class="btn filter-btn-success rounded-pill px-4 py-2 fw-medium">Concluído</button>
-            <button class="btn filter-btn-info rounded-pill px-4 py-2 fw-medium">Quero Ver</button>
+          <div class="collapse navbar-collapse align-items-center" id="navbarContent">
+            <ul
+              class="navbar-nav mx-auto mb-3 mb-md-0 gap-2 gap-md-4 align-items-md-center font-outfit text-center text-md-start"
+            >
+              <li class="nav-item">
+                <a class="nav-link nav-link-custom py-1" href="/home.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-link-custom py-1 active" href="/collection.html">Coleção</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-link-custom py-1" href="/add-new-movie.html">Adicionar</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </nav>
     </header>
 
-    <!-- Movie Grid -->
-    <div class="row g-4">
-        <!-- Card 1 -->
+    <main class="flex-grow-1 container-fluid px-4 px-md-5 pt-5 mt-5 pb-5 max-w-1280px">
+      <header class="mb-5 mt-4">
+        <h1 class="font-bebas text-on-surface mb-4 display-3 letter-spacing-neg">Minha Coleção</h1>
+        <div class="d-flex flex-wrap gap-3 align-items-center">
+          <button class="btn filter-btn rounded-pill px-4 py-2 fw-medium">Todos</button>
+          <button class="btn filter-btn-amber rounded-pill px-4 py-2 fw-bold">Assistindo</button>
+          <button class="btn filter-btn-success rounded-pill px-4 py-2 fw-medium">Concluído</button>
+          <button class="btn filter-btn-info rounded-pill px-4 py-2 fw-medium">Quero Ver</button>
+        </div>
+      </header>
+
+      <div class="row g-4">
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <div class="movie-card bg-surface rounded-4 overflow-hidden cinematic-shadow h-100 d-flex flex-column">
-                <div class="position-relative movie-card-img-wrapper">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuApwzbxwHhnkHjFLvxMzn4Pjhk6gf7yzVgiwr9RwZqBVeSWxc-wDZg9cnHitxAuwssvwuBNlaq7gviDiraLQgUpTg5mCTeKUeRMJTgNW6h8v0LYvW3HtJv7V7PtY-9KmfV7eJZebiegE1vIQM0Z85Gc7WrJU86coJkGGOegeWhJ8Fbt9qpzznE-4D5SlRVjlEtdyPIwTc0tGPk4Ncul3-Dj5YzXbGxaVMG4VUg23rEsAymbovpECgMLPIBD6dPKRJUP2FLre_m0faA" alt="Poster" class="w-100 h-100 object-fit-cover">
-                    <div class="position-absolute top-0 bottom-0 start-0 end-0 poster-gradient"></div>
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge text-bg-warning rounded-2 font-mono bg-warning-custom">EM ANDAMENTO</span>
-                    </div>
-                </div>
-                <div class="p-4 d-flex flex-column flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                        <h3 class="font-outfit fs-5 fw-semibold m-0 line-height-12">O Silêncio da Noite</h3>
-                        <span class="badge bg-surface-highest text-on-surface-variant font-mono ms-2">2023</span>
-                    </div>
-                    <p class="font-mono text-primary-custom text-uppercase mb-3 fs-10px letter-spacing-01">Suspense • Noir</p>
-                    <div class="d-flex align-items-center gap-1 mb-4">
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
-                    </div>
-                    <div class="d-flex gap-2 pt-3 mt-auto border-top border-outline-variant border-opacity-25">
-                        <button class="btn btn-action flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6">
-                            <span class="material-symbols-outlined fs-6">edit</span> Editar
-                        </button>
-                        <button class="btn btn-danger-soft flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6">
-                            <span class="material-symbols-outlined fs-6">delete</span> Excluir
-                        </button>
-                    </div>
-                </div>
+          <div
+            class="movie-card bg-surface rounded-4 overflow-hidden cinematic-shadow h-100 d-flex flex-column"
+          >
+            <div class="position-relative movie-card-img-wrapper">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuApwzbxwHhnkHjFLvxMzn4Pjhk6gf7yzVgiwr9RwZqBVeSWxc-wDZg9cnHitxAuwssvwuBNlaq7gviDiraLQgUpTg5mCTeKUeRMJTgNW6h8v0LYvW3HtJv7V7PtY-9KmfV7eJZebiegE1vIQM0Z85Gc7WrJU86coJkGGOegeWhJ8Fbt9qpzznE-4D5SlRVjlEtdyPIwTc0tGPk4Ncul3-Dj5YzXbGxaVMG4VUg23rEsAymbovpECgMLPIBD6dPKRJUP2FLre_m0faA"
+                alt="Poster"
+                class="w-100 h-100 object-fit-cover"
+              />
+              <div class="position-absolute top-0 bottom-0 start-0 end-0 poster-gradient"></div>
+              <div class="position-absolute top-0 end-0 m-3">
+                <span class="badge text-bg-warning rounded-2 font-mono bg-warning-custom"
+                  >EM ANDAMENTO</span
+                >
+              </div>
             </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h3 class="font-outfit fs-5 fw-semibold m-0 line-height-12">O Silêncio da Noite</h3>
+                <span class="badge bg-surface-highest text-on-surface-variant font-mono ms-2"
+                  >2023</span
+                >
+              </div>
+              <p
+                class="font-mono text-primary-custom text-uppercase mb-3 fs-10px letter-spacing-01"
+              >
+                Suspense • Noir
+              </p>
+              <div class="d-flex align-items-center gap-1 mb-4">
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
+              </div>
+              <div
+                class="d-flex gap-2 pt-3 mt-auto border-top border-outline-variant border-opacity-25"
+              >
+                <button
+                  class="btn btn-action flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6"
+                >
+                  <span class="material-symbols-outlined fs-6">edit</span> Editar
+                </button>
+                <button
+                  class="btn btn-danger-soft flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6"
+                >
+                  <span class="material-symbols-outlined fs-6">delete</span> Excluir
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Card 2 -->
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <div class="movie-card bg-surface rounded-4 overflow-hidden cinematic-shadow h-100 d-flex flex-column">
-                <div class="position-relative movie-card-img-wrapper">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMXZFpdJ0HKypWQJpYvTUsovyuu4uN3QNknftsoMvK_0rCH0gtfeyyMHwaSuinAJEe32RqXe9oX9qr0bYr66AOcf7f0-J3WosKgkjYDvMX2xmQtjyLBmPuP6QCsTNtfZrWblmEK9dBLG_NIFVSb6xKT7LTjauV4JmKAj9uJu-J6cAnf5WrEV4xSuBIs0aWvLrK5JBnybfWSr781vUIHyCzT_5WyXJ0jcUHwDpuoBIEtQLAkdf83Z-SH5rUdld4QKmukAlrLcCOpB8" alt="Poster" class="w-100 h-100 object-fit-cover">
-                    <div class="position-absolute top-0 bottom-0 start-0 end-0 poster-gradient"></div>
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge text-white rounded-2 font-mono bg-success">CONCLUÍDO</span>
-                    </div>
-                </div>
-                <div class="p-4 d-flex flex-column flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                        <h3 class="font-outfit fs-5 fw-semibold m-0 line-height-12">Além do Horizonte</h3>
-                        <span class="badge bg-surface-highest text-on-surface-variant font-mono ms-2">2024</span>
-                    </div>
-                    <p class="font-mono text-primary-custom text-uppercase mb-3 fs-10px letter-spacing-01">Ficção Científica</p>
-                    <div class="d-flex align-items-center gap-1 mb-4">
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                    </div>
-                    <div class="d-flex gap-2 pt-3 mt-auto border-top border-outline-variant border-opacity-25">
-                        <button class="btn btn-action flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6">
-                            <span class="material-symbols-outlined fs-6">edit</span> Editar
-                        </button>
-                        <button class="btn btn-danger-soft flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6">
-                            <span class="material-symbols-outlined fs-6">delete</span> Excluir
-                        </button>
-                    </div>
-                </div>
+          <div
+            class="movie-card bg-surface rounded-4 overflow-hidden cinematic-shadow h-100 d-flex flex-column"
+          >
+            <div class="position-relative movie-card-img-wrapper">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMXZFpdJ0HKypWQJpYvTUsovyuu4uN3QNknftsoMvK_0rCH0gtfeyyMHwaSuinAJEe32RqXe9oX9qr0bYr66AOcf7f0-J3WosKgkjYDvMX2xmQtjyLBmPuP6QCsTNtfZrWblmEK9dBLG_NIFVSb6xKT7LTjauV4JmKAj9uJu-J6cAnf5WrEV4xSuBIs0aWvLrK5JBnybfWSr781vUIHyCzT_5WyXJ0jcUHwDpuoBIEtQLAkdf83Z-SH5rUdld4QKmukAlrLcCOpB8"
+                alt="Poster"
+                class="w-100 h-100 object-fit-cover"
+              />
+              <div class="position-absolute top-0 bottom-0 start-0 end-0 poster-gradient"></div>
+              <div class="position-absolute top-0 end-0 m-3">
+                <span class="badge text-white rounded-2 font-mono bg-success">CONCLUÍDO</span>
+              </div>
             </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h3 class="font-outfit fs-5 fw-semibold m-0 line-height-12">Além do Horizonte</h3>
+                <span class="badge bg-surface-highest text-on-surface-variant font-mono ms-2"
+                  >2024</span
+                >
+              </div>
+              <p
+                class="font-mono text-primary-custom text-uppercase mb-3 fs-10px letter-spacing-01"
+              >
+                Ficção Científica
+              </p>
+              <div class="d-flex align-items-center gap-1 mb-4">
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+              </div>
+              <div
+                class="d-flex gap-2 pt-3 mt-auto border-top border-outline-variant border-opacity-25"
+              >
+                <button
+                  class="btn btn-action flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6"
+                >
+                  <span class="material-symbols-outlined fs-6">edit</span> Editar
+                </button>
+                <button
+                  class="btn btn-danger-soft flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6"
+                >
+                  <span class="material-symbols-outlined fs-6">delete</span> Excluir
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Card 3 -->
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <div class="movie-card bg-surface rounded-4 overflow-hidden cinematic-shadow h-100 d-flex flex-column">
-                <div class="position-relative movie-card-img-wrapper">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkJjhPjK2SZ_N_7ejrfDhcOOf6jvaLv1gbvnUj8MOwCI8YjtxnIQjtPWkJuN8qmVMMZSJDwmPRTh9Swha1_R7R9JVkNbHLo4Mh8jWwRPTOd_142ZwVCU0X3dKYlzAnJWYTUtu2SV8MWTUCkQdE_ArYx32vPI7ttqmoxr-LPVzFxdhCu8zj7-O9jH_nzXCqScE1QK7v71PYiRD_gaNI5XLCpT40e85ROd8GgC7D1OLMw95XwKi8xv_89i7O0votQUuJnQcfR-Glw-4" alt="Poster" class="w-100 h-100 object-fit-cover">
-                    <div class="position-absolute top-0 bottom-0 start-0 end-0 poster-gradient"></div>
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge text-white rounded-2 font-mono bg-info">QUERO VER</span>
-                    </div>
-                </div>
-                <div class="p-4 d-flex flex-column flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                        <h3 class="font-outfit fs-5 fw-semibold m-0 line-height-12">Fragmentos</h3>
-                        <span class="badge bg-surface-highest text-on-surface-variant font-mono ms-2">2022</span>
-                    </div>
-                    <p class="font-mono text-primary-custom text-uppercase mb-3 fs-10px letter-spacing-01">Documentário</p>
-                    <div class="d-flex align-items-center gap-1 mb-4">
-                        <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
-                        <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
-                        <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
-                        <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
-                        <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
-                    </div>
-                    <div class="d-flex gap-2 pt-3 mt-auto border-top border-outline-variant border-opacity-25">
-                        <button class="btn btn-action flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6">
-                            <span class="material-symbols-outlined fs-6">edit</span> Editar
-                        </button>
-                        <button class="btn btn-danger-soft flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6">
-                            <span class="material-symbols-outlined fs-6">delete</span> Excluir
-                        </button>
-                    </div>
-                </div>
+          <div
+            class="movie-card bg-surface rounded-4 overflow-hidden cinematic-shadow h-100 d-flex flex-column"
+          >
+            <div class="position-relative movie-card-img-wrapper">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkJjhPjK2SZ_N_7ejrfDhcOOf6jvaLv1gbvnUj8MOwCI8YjtxnIQjtPWkJuN8qmVMMZSJDwmPRTh9Swha1_R7R9JVkNbHLo4Mh8jWwRPTOd_142ZwVCU0X3dKYlzAnJWYTUtu2SV8MWTUCkQdE_ArYx32vPI7ttqmoxr-LPVzFxdhCu8zj7-O9jH_nzXCqScE1QK7v71PYiRD_gaNI5XLCpT40e85ROd8GgC7D1OLMw95XwKi8xv_89i7O0votQUuJnQcfR-Glw-4"
+                alt="Poster"
+                class="w-100 h-100 object-fit-cover"
+              />
+              <div class="position-absolute top-0 bottom-0 start-0 end-0 poster-gradient"></div>
+              <div class="position-absolute top-0 end-0 m-3">
+                <span class="badge text-white rounded-2 font-mono bg-info">QUERO VER</span>
+              </div>
             </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h3 class="font-outfit fs-5 fw-semibold m-0 line-height-12">Fragmentos</h3>
+                <span class="badge bg-surface-highest text-on-surface-variant font-mono ms-2"
+                  >2022</span
+                >
+              </div>
+              <p
+                class="font-mono text-primary-custom text-uppercase mb-3 fs-10px letter-spacing-01"
+              >
+                Documentário
+              </p>
+              <div class="d-flex align-items-center gap-1 mb-4">
+                <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
+                <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
+                <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
+                <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
+                <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
+              </div>
+              <div
+                class="d-flex gap-2 pt-3 mt-auto border-top border-outline-variant border-opacity-25"
+              >
+                <button
+                  class="btn btn-action flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6"
+                >
+                  <span class="material-symbols-outlined fs-6">edit</span> Editar
+                </button>
+                <button
+                  class="btn btn-danger-soft flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6"
+                >
+                  <span class="material-symbols-outlined fs-6">delete</span> Excluir
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Card 4 -->
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <div class="movie-card bg-surface rounded-4 overflow-hidden cinematic-shadow h-100 d-flex flex-column">
-                <div class="position-relative movie-card-img-wrapper">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqz3NLy2OZz36kqWVnLo7RHzNBKzSNoA-uh_O64jnQN-U-gSAbK-HqN27R5sbhc0aNncLG4D4WB6-RAqiuaMpXYM8UviSNzwwNgja-e8Hg53LyvALNqdC221bqB-lvpdr9-alE558AOwPjiiyzr_2jcACKvPdKHXA2J7TaPdcWqEoT3y9YYWVaEa6PwXDd2nxJcTI-2KfZtVaQxf4vVQwlpPoGZzzaY0qsEekPg913ZFbnNH19BWZpCyBBcxrbg_4fFcHAbcxaBMY" alt="Poster" class="w-100 h-100 object-fit-cover">
-                    <div class="position-absolute top-0 bottom-0 start-0 end-0 poster-gradient"></div>
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge text-bg-warning rounded-2 font-mono bg-warning-custom">EM ANDAMENTO</span>
-                    </div>
-                </div>
-                <div class="p-4 d-flex flex-column flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                        <h3 class="font-outfit fs-5 fw-semibold m-0 line-height-12">Crônicas de Ontem</h3>
-                        <span class="badge bg-surface-highest text-on-surface-variant font-mono ms-2">2021</span>
-                    </div>
-                    <p class="font-mono text-primary-custom text-uppercase mb-3 fs-10px letter-spacing-01">Drama • Época</p>
-                    <div class="d-flex align-items-center gap-1 mb-4">
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill">star</span>
-                        <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
-                        <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
-                    </div>
-                    <div class="d-flex gap-2 pt-3 mt-auto border-top border-outline-variant border-opacity-25">
-                        <button class="btn btn-action flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6">
-                            <span class="material-symbols-outlined fs-6">edit</span> Editar
-                        </button>
-                        <button class="btn btn-danger-soft flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6">
-                            <span class="material-symbols-outlined fs-6">delete</span> Excluir
-                        </button>
-                    </div>
-                </div>
+          <div
+            class="movie-card bg-surface rounded-4 overflow-hidden cinematic-shadow h-100 d-flex flex-column"
+          >
+            <div class="position-relative movie-card-img-wrapper">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqz3NLy2OZz36kqWVnLo7RHzNBKzSNoA-uh_O64jnQN-U-gSAbK-HqN27R5sbhc0aNncLG4D4WB6-RAqiuaMpXYM8UviSNzwwNgja-e8Hg53LyvALNqdC221bqB-lvpdr9-alE558AOwPjiiyzr_2jcACKvPdKHXA2J7TaPdcWqEoT3y9YYWVaEa6PwXDd2nxJcTI-2KfZtVaQxf4vVQwlpPoGZzzaY0qsEekPg913ZFbnNH19BWZpCyBBcxrbg_4fFcHAbcxaBMY"
+                alt="Poster"
+                class="w-100 h-100 object-fit-cover"
+              />
+              <div class="position-absolute top-0 bottom-0 start-0 end-0 poster-gradient"></div>
+              <div class="position-absolute top-0 end-0 m-3">
+                <span class="badge text-bg-warning rounded-2 font-mono bg-warning-custom"
+                  >EM ANDAMENTO</span
+                >
+              </div>
             </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h3 class="font-outfit fs-5 fw-semibold m-0 line-height-12">Crônicas de Ontem</h3>
+                <span class="badge bg-surface-highest text-on-surface-variant font-mono ms-2"
+                  >2021</span
+                >
+              </div>
+              <p
+                class="font-mono text-primary-custom text-uppercase mb-3 fs-10px letter-spacing-01"
+              >
+                Drama • Época
+              </p>
+              <div class="d-flex align-items-center gap-1 mb-4">
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-primary-custom fs-5 icon-fill"
+                  >star</span
+                >
+                <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
+                <span class="material-symbols-outlined text-outline-variant fs-5">star</span>
+              </div>
+              <div
+                class="d-flex gap-2 pt-3 mt-auto border-top border-outline-variant border-opacity-25"
+              >
+                <button
+                  class="btn btn-action flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6"
+                >
+                  <span class="material-symbols-outlined fs-6">edit</span> Editar
+                </button>
+                <button
+                  class="btn btn-danger-soft flex-grow-1 d-flex justify-content-center align-items-center gap-2 py-2 rounded-3 border-0 font-outfit fs-6"
+                >
+                  <span class="material-symbols-outlined fs-6">delete</span> Excluir
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-</main>
+      </div>
+    </main>
 
-<!-- Footer -->
-<footer class="bg-surface-lowest border-top border-secondary border-opacity-10 mt-auto">
-    <div class="container py-5">
+    <footer class="bg-surface-lowest border-top border-secondary border-opacity-10 mt-auto">
+      <div class="container py-5">
         <div class="row align-items-center text-center text-md-start">
-            <div class="col-md-6 mb-4 mb-md-0">
-                <div class="font-bebas fs-5 text-primary-container mb-2">WATCHLIST</div>
-                <div class="font-mono fs-10px text-color-footer letter-spacing-01">© 2026 - Todos os direitos reservados</div>
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="font-bebas fs-5 text-primary-container mb-2">WATCHLIST</div>
+            <div class="font-mono fs-10px text-color-footer letter-spacing-01">
+              © 2026 - Todos os direitos reservados
             </div>
-            <div class="col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end gap-3 gap-md-4 font-outfit small">
-                <a href="#" class="text-decoration-none text-secondary">Política de Privacidade</a>
-                <a href="#" class="text-decoration-none text-secondary">Termos de Serviço</a>
-                <a href="#" class="text-decoration-none text-secondary">Suporte e Contato</a>
-            </div>
+          </div>
+          <div
+            class="col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end gap-3 gap-md-4 font-outfit small"
+          >
+            <a href="#" class="text-decoration-none text-secondary">Política de Privacidade</a>
+            <a href="#" class="text-decoration-none text-secondary">Termos de Serviço</a>
+            <a href="#" class="text-decoration-none text-secondary">Suporte e Contato</a>
+          </div>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<!-- Bootstrap 5.3 JS Bundle -->
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

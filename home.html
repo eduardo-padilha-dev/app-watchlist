@@ -1,179 +1,248 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR" data-bs-theme="dark">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Cinema Âmbar</title>
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    
-</head>
-<body class="d-flex flex-column min-vh-100 bg-surface-lowest text-on-surface">
-
-<!-- TopNavBar -->
-<header class="fixed-top glass-nav w-100 shadow-lg">
-    <nav class="navbar navbar-expand-md px-3 px-md-4 py-3">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body class="d-flex flex-column min-vh-100 bg-surface-lowest text-on-surface">
+    <header class="fixed-top glass-nav shadow-lg">
+      <nav class="navbar navbar-expand-md px-3 px-md-4 py-3">
         <div class="container-fluid">
-            <a class="navbar-brand font-bebas fs-3 fw-bold text-primary-custom text-uppercase m-0" href="/home.html">WATCHLIST</a>
-            
-            <button class="navbar-toggler border-0 shadow-none text-primary-custom" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="material-symbols-outlined">menu</span>
+          <a
+            class="navbar-brand font-bebas fs-3 fw-bold text-primary-custom text-uppercase"
+            href="/home.html"
+            >WATCHLIST</a
+          >
+
+          <button
+            class="navbar-toggler border-0 shadow-none text-primary-custom"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+            aria-controls="navbarContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+
+          <div class="collapse navbar-collapse align-items-center" id="navbarContent">
+            <ul class="navbar-nav mx-auto mb-3 mb-md-0 gap-2 gap-md-4 align-items-md-center">
+              <li class="nav-item">
+                <a class="nav-link nav-link-custom py-1 active" href="/home.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-link-custom py-1" href="/collection.html">Coleção</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-link-custom py-1" href="/add-new-movie.html">Adicionar</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section
+      class="position-relative d-flex align-items-center justify-content-center hero-section hero-bg"
+    >
+      <div class="position-relative z-1 w-100 px-3 text-center max-w-900px">
+        <h1 class="font-bebas mb-5 fs-hero letter-spacing-neg">Sua história começa aqui.</h1>
+
+        <form class="mx-auto max-w-672px">
+          <div
+            class="d-flex align-items-center bg-surface-high bg-opacity-75 rounded-pill p-2 border-ghost border-ghost-focus transition-all backdrop-blur-12"
+          >
+            <span class="material-symbols-outlined ms-3 text-outline">search</span>
+            <input
+              type="text"
+              class="form-control bg-transparent border-0 shadow-none px-3 py-2 fs-5"
+              placeholder="Pesquise Filmes"
+            />
+            <button
+              class="btn btn-primary-custom rounded-pill px-4 px-md-5 py-2 py-md-3 ms-2 shadow-lg"
+            >
+              Pesquisar
             </button>
+          </div>
+        </form>
+      </div>
+    </section>
 
-            <div class="collapse navbar-collapse align-items-center" id="navbarContent">
-                <ul class="navbar-nav mx-auto mb-3 mb-md-0 gap-2 gap-md-4 align-items-md-center font-outfit text-center text-md-start">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom py-1 active" href="/home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom py-1" href="/collection.html">Coleção</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-custom py-1" href="/add-new-movie.html">Adicionar</a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-</header>
-
-<!-- Hero Section -->
-<section class="position-relative w-100 d-flex align-items-center justify-content-center hero-section hero-bg">
-    <div class="position-relative z-1 w-100 px-3 text-center max-w-900px">
-        <h1 class="font-bebas text-on-surface mb-5 fs-hero letter-spacing-neg">Sua história começa aqui.</h1>
-        
-        <div class="mx-auto max-w-672px">
-            <div class="d-flex align-items-center bg-surface-high bg-opacity-75 rounded-pill p-2 border-ghost border-ghost-focus transition-all backdrop-blur-12">
-                <span class="material-symbols-outlined ms-3 text-outline">search</span>
-                <input type="text" class="form-control bg-transparent border-0 shadow-none text-on-surface font-outfit px-3 py-2 fs-5" placeholder="Pesquise Filmes">
-                <button class="btn btn-primary-custom rounded-pill px-4 px-md-5 py-2 py-md-3 ms-2 shadow-lg">
-                    Pesquisar
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Content: Trending Now -->
-<main class="container-fluid px-4 px-md-5 position-relative z-2 hero-margin max-w-1280px">
-    
-    <div class="d-flex align-items-end justify-content-between mb-5">
+    <main class="container-fluid px-4 px-md-5 position-relative z-2 hero-margin max-w-1280px">
+      <div class="d-flex align-items-end justify-content-between mb-5">
         <div>
-            <span class="font-mono text-primary-container small text-uppercase d-block mb-2 letter-spacing-03">Recomendados</span>
-            <h2 class="font-bebas display-4 m-0 letter-spacing-005">Em alta</h2>
+          <span
+            class="font-mono text-primary-container small text-uppercase d-block mb-2 letter-spacing-03"
+            >Recomendados</span
+          >
+          <h2 class="font-bebas display-4 letter-spacing-005">Em alta</h2>
         </div>
         <div class="flex-grow-1 mx-4 mx-md-5 mb-3 divider-gradient"></div>
-    </div>
+      </div>
 
-    <!-- Bento/Asymmetric Grid -->
-    <div class="row g-4">
-        <!-- Movie Card 1 -->
+      <div class="row g-4">
         <div class="col-12 col-sm-6 col-lg-3">
-            <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
-                <div class="movie-card-img-wrapper position-relative overflow-hidden w-100">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlQcnKRc_Tjpi7Lq12CihGVoGmtvDkivd_rdbKf4zbHBg_VMm02_EUmgHGYMMcYkeiliZhllKNojZ0-VlhyA2SEtFHduZ-A5Dft0ntwUpi4HW7uj7_gf1eMNVBMqtyXxdV8bc5J-WPlSdwRCYCd2b-vKiQGdy84s3jywYzVtgVkQY-SzzIiqXyJxe5tq9rxysdxcDTEy2tA4ChqoZ0CUlAQV7Kl3U5Tfp4pfAW4TtJYheAgGZIwqf-QbROvF_yAuZgLPgomk7rX1c" alt="Midnight Protocol" class="movie-card-img w-100 h-100 object-fit-cover">
-                    <div class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12">
-                        <span class="material-symbols-outlined text-primary-container fs-14px icon-fill">star</span>
-                        <span class="font-mono text-primary-container fw-bold fs-12px">8.4</span>
-                    </div>
-                </div>
-                <div class="p-4 d-flex flex-column flex-grow-1">
-                    <h3 class="font-outfit fs-5 fw-semibold mb-1 movie-title">Midnight Protocol</h3>
-                    <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">Sci-Fi • 124 MIN</p>
-                    <button class="btn btn-add-list mt-auto w-100 py-2 rounded-3 fs-6 font-outfit fw-semibold d-flex align-items-center justify-content-center gap-2">
-                        <span class="material-symbols-outlined fs-18px">add</span>
-                        Adicionar à Lista
-                    </button>
-                </div>
+          <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
+            <div class="movie-card-img-wrapper position-relative overflow-hidden">
+              <picture>
+                <source
+                  srcset="
+                    https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=300&auto=format&fit=crop&fm=webp
+                  "
+                  type="image/webp"
+                />
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlQcnKRc_Tjpi7Lq12CihGVoGmtvDkivd_rdbKf4zbHBg_VMm02_EUmgHGYMMcYkeiliZhllKNojZ0-VlhyA2SEtFHduZ-A5Dft0ntwUpi4HW7uj7_gf1eMNVBMqtyXxdV8bc5J-WPlSdwRCYCd2b-vKiQGdy84s3jywYzVtgVkQY-SzzIiqXyJxe5tq9rxysdxcDTEy2tA4ChqoZ0CUlAQV7Kl3U5Tfp4pfAW4TtJYheAgGZIwqf-QbROvF_yAuZgLPgomk7rX1c"
+                  alt="Midnight Protocol"
+                  class="movie-card-img w-100 h-100 object-fit-cover"
+                />
+              </picture>
+              <div
+                class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
+              >
+                <span class="material-symbols-outlined text-primary-container fs-14px icon-fill"
+                  >star</span
+                >
+                <span class="font-mono text-primary-container fw-bold fs-12px">8.4</span>
+              </div>
             </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <h3 class="fs-5 fw-semibold mb-1 movie-title">Midnight Protocol</h3>
+              <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
+                Sci-Fi • 124 MIN
+              </p>
+              <button
+                class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2"
+              >
+                <span class="material-symbols-outlined fs-18px">add</span>
+                Adicionar à Lista
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Movie Card 2 -->
         <div class="col-12 col-sm-6 col-lg-3">
-            <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
-                <div class="movie-card-img-wrapper position-relative overflow-hidden w-100">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT1Bro-PY6bZkv06fgORUf2p1Zc_Dy7y5OUaXAfHmk1W_2XgSiUWEAkcJ2yhF9NeMknvWlUu6pb8swIYd7dIJoBQkB9k0DwoEw3-kbkXMnhq5DQlUK9M1FxlBT-iibuEv5cHDJTN7v55ETzEbSm4uPhDP8dtNBb8SC9kYkUWY3uijO4WoVW9FEpG0YXIK88w3QgRPigSBZNmG9Zspfn6Fm0zS_017WVsXJF_otiwxfQeyNaK2KviuFOlqZNqWWu9TGu6WAWpx4ep4" alt="The Last Drive" class="movie-card-img w-100 h-100 object-fit-cover">
-                    <div class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12">
-                        <span class="material-symbols-outlined text-primary-container fs-14px icon-fill">star</span>
-                        <span class="font-mono text-primary-container fw-bold fs-12px">9.1</span>
-                    </div>
-                </div>
-                <div class="p-4 d-flex flex-column flex-grow-1">
-                    <h3 class="font-outfit fs-5 fw-semibold mb-1 movie-title">The Last Drive</h3>
-                    <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">Drama • 142 MIN</p>
-                    <button class="btn btn-add-list mt-auto w-100 py-2 rounded-3 fs-6 font-outfit fw-semibold d-flex align-items-center justify-content-center gap-2">
-                        <span class="material-symbols-outlined fs-18px">add</span>
-                        Adicionar à Lista
-                    </button>
-                </div>
+          <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
+            <div class="movie-card-img-wrapper position-relative overflow-hidden">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT1Bro-PY6bZkv06fgORUf2p1Zc_Dy7y5OUaXAfHmk1W_2XgSiUWEAkcJ2yhF9NeMknvWlUu6pb8swIYd7dIJoBQkB9k0DwoEw3-kbkXMnhq5DQlUK9M1FxlBT-iibuEv5cHDJTN7v55ETzEbSm4uPhDP8dtNBb8SC9kYkUWY3uijO4WoVW9FEpG0YXIK88w3QgRPigSBZNmG9Zspfn6Fm0zS_017WVsXJF_otiwxfQeyNaK2KviuFOlqZNqWWu9TGu6WAWpx4ep4"
+                alt="The Last Drive"
+                class="movie-card-img w-100 h-100 object-fit-cover"
+              />
+              <div
+                class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
+              >
+                <span class="material-symbols-outlined text-primary-container fs-14px icon-fill"
+                  >star</span
+                >
+                <span class="font-mono text-primary-container fw-bold fs-12px">9.1</span>
+              </div>
             </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <h3 class="fs-5 fw-semibold mb-1 movie-title">The Last Drive</h3>
+              <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
+                Drama • 142 MIN
+              </p>
+              <button
+                class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2"
+              >
+                <span class="material-symbols-outlined fs-18px">add</span>
+                Adicionar à Lista
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Movie Card 3 -->
         <div class="col-12 col-sm-6 col-lg-3">
-            <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
-                <div class="movie-card-img-wrapper position-relative overflow-hidden w-100">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLZ1upDRTLYXScajILexvZiclB5avb6jCA0hIJPKDAk4bqkw-_1pJ1mj9y-t3ftTI7G2l3c48l_0_N5oRMk3ExRlKLk0eEdyVMKT33vQSwA6nZfhMpst51HXPGz3JkSGRymrXM38drQXIwx593k0R_pXiTcaY3VkIiKCqeFfXfKBhWZbDTmMbbwdMfwJ89tKHQU1TS7UNj53n0vMnRiZTJydTqWYR0AosYU2CV7y1bMZYeDdv10z3SD2o7TahkEzf1QiSSuD5FoMg" alt="Shadow Frame" class="movie-card-img w-100 h-100 object-fit-cover">
-                    <div class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12">
-                        <span class="material-symbols-outlined text-primary-container fs-14px icon-fill">star</span>
-                        <span class="font-mono text-primary-container fw-bold fs-12px">7.8</span>
-                    </div>
-                </div>
-                <div class="p-4 d-flex flex-column flex-grow-1">
-                    <h3 class="font-outfit fs-5 fw-semibold mb-1 movie-title">Shadow Frame</h3>
-                    <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">Thriller • 110 MIN</p>
-                    <button class="btn btn-add-list mt-auto w-100 py-2 rounded-3 fs-6 font-outfit fw-semibold d-flex align-items-center justify-content-center gap-2">
-                        <span class="material-symbols-outlined fs-18px">add</span>
-                        Adicionar à Lista
-                    </button>
-                </div>
+          <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
+            <div class="movie-card-img-wrapper position-relative overflow-hidden">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLZ1upDRTLYXScajILexvZiclB5avb6jCA0hIJPKDAk4bqkw-_1pJ1mj9y-t3ftTI7G2l3c48l_0_N5oRMk3ExRlKLk0eEdyVMKT33vQSwA6nZfhMpst51HXPGz3JkSGRymrXM38drQXIwx593k0R_pXiTcaY3VkIiKCqeFfXfKBhWZbDTmMbbwdMfwJ89tKHQU1TS7UNj53n0vMnRiZTJydTqWYR0AosYU2CV7y1bMZYeDdv10z3SD2o7TahkEzf1QiSSuD5FoMg"
+                alt="Shadow Frame"
+                class="movie-card-img w-100 h-100 object-fit-cover"
+              />
+              <div
+                class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
+              >
+                <span class="material-symbols-outlined text-primary-container fs-14px icon-fill"
+                  >star</span
+                >
+                <span class="font-mono text-primary-container fw-bold fs-12px">7.8</span>
+              </div>
             </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <h3 class="fs-5 fw-semibold mb-1 movie-title">Shadow Frame</h3>
+              <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
+                Thriller • 110 MIN
+              </p>
+              <button
+                class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2"
+              >
+                <span class="material-symbols-outlined fs-18px">add</span>
+                Adicionar à Lista
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Movie Card 4 -->
         <div class="col-12 col-sm-6 col-lg-3">
-            <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
-                <div class="movie-card-img-wrapper position-relative overflow-hidden w-100">
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX15oxpub9e8_VRXqC1VwgSMBXfJWqt4Pu11CdhgwulQuMp7cOAUO9WTdlbcRznGSUaAvL_O_8SV9t0XjSDyO5xECJ1C0jtEYKeDGIyTpZZ2S14HEZktGJbwAk-_A_dpdWTtyjn5s-YaYygXDM23dPqJIv9An2lDk2kqTyRbXG82OZIycYKqTSMwPSQOfPHb6CrIXTdTeMeSslwQSJaWIDDar6Hs4C4BLnnNG_Z0nlH9Ih124vw-wxXNc1bmAcFWoQIOwHXTdCpPQ" alt="Horizon Bound" class="movie-card-img w-100 h-100 object-fit-cover">
-                    <div class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12">
-                        <span class="material-symbols-outlined text-primary-container fs-14px icon-fill">star</span>
-                        <span class="font-mono text-primary-container fw-bold fs-12px">8.9</span>
-                    </div>
-                </div>
-                <div class="p-4 d-flex flex-column flex-grow-1">
-                    <h3 class="font-outfit fs-5 fw-semibold mb-1 movie-title">Horizon Bound</h3>
-                    <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">Adventure • 138 MIN</p>
-                    <button class="btn btn-add-list mt-auto w-100 py-2 rounded-3 fs-6 font-outfit fw-semibold d-flex align-items-center justify-content-center gap-2">
-                        <span class="material-symbols-outlined fs-18px">add</span>
-                        Adicionar à Lista
-                    </button>
-                </div>
+          <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
+            <div class="movie-card-img-wrapper position-relative overflow-hidden">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX15oxpub9e8_VRXqC1VwgSMBXfJWqt4Pu11CdhgwulQuMp7cOAUO9WTdlbcRznGSUaAvL_O_8SV9t0XjSDyO5xECJ1C0jtEYKeDGIyTpZZ2S14HEZktGJbwAk-_A_dpdWTtyjn5s-YaYygXDM23dPqJIv9An2lDk2kqTyRbXG82OZIycYKqTSMwPSQOfPHb6CrIXTdTeMeSslwQSJaWIDDar6Hs4C4BLnnNG_Z0nlH9Ih124vw-wxXNc1bmAcFWoQIOwHXTdCpPQ"
+                alt="Horizon Bound"
+                class="movie-card-img w-100 h-100 object-fit-cover"
+              />
+              <div
+                class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
+              >
+                <span class="material-symbols-outlined text-primary-container fs-14px icon-fill"
+                  >star</span
+                >
+                <span class="font-mono text-primary-container fw-bold fs-12px">8.9</span>
+              </div>
             </div>
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <h3 class="fs-5 fw-semibold mb-1 movie-title">Horizon Bound</h3>
+              <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
+                Adventure • 138 MIN
+              </p>
+              <button
+                class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2"
+              >
+                <span class="material-symbols-outlined fs-18px">add</span>
+                Adicionar à Lista
+              </button>
+            </div>
+          </div>
         </div>
-    </div>
-</main>
+      </div>
+    </main>
 
-<!-- Footer -->
-<footer class="bg-surface-lowest border-top border-secondary border-opacity-10 mt-auto">
-    <div class="container py-5">
+    <footer class="bg-surface-lowest border-top border-secondary border-opacity-10 mt-auto">
+      <div class="container py-5">
         <div class="row align-items-center text-center text-md-start">
-            <div class="col-md-6 mb-4 mb-md-0">
-                <div class="font-bebas fs-5 text-primary-container mb-2">WATCHLIST</div>
-                <div class="font-mono fs-10px text-color-footer letter-spacing-01">© 2026 - Todos os direitos reservados</div>
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="font-bebas fs-5 text-primary-container mb-2">WATCHLIST</div>
+            <div class="font-mono fs-10px text-color-footer letter-spacing-01">
+              © 2026 - Todos os direitos reservados
             </div>
-            <div class="col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end gap-3 gap-md-4 font-outfit small">
-                <a href="#" class="text-decoration-none text-secondary">Política de Privacidade</a>
-                <a href="#" class="text-decoration-none text-secondary">Termos de Serviço</a>
-                <a href="#" class="text-decoration-none text-secondary">Suporte e Contato</a>
-            </div>
+          </div>
+          <div
+            class="col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end gap-3 gap-md-4 small"
+          >
+            <a href="#" class="text-decoration-none text-secondary">Política de Privacidade</a>
+            <a href="#" class="text-decoration-none text-secondary">Termos de Serviço</a>
+            <a href="#" class="text-decoration-none text-secondary">Suporte e Contato</a>
+          </div>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<!-- Bootstrap 5.3 JS Bundle -->
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
