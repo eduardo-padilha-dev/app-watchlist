@@ -122,6 +122,6 @@ npx json-server --watch db.json --port 3000
 
 ## 🖼️ Telas da Aplicação
 
-| Home                                       | Minha Lista                                      | Cadastro                                            |
-| ------------------------------------------ | ------------------------------------------------ | --------------------------------------------------- |
-| ![alt text](./docs/images/home-screen.png) | ![alt text](./docs/images/collection-screen.png) | ![alt text](./docs/images/add-new-movie-screen.png) |
+| Home                                   | Minha Lista                                     | Cadastro                                            |
+| -------------------------------------- | ----------------------------------------------- | --------------------------------------------------- |
+| ![Home](./docs/images/home-screen.png) | ![Coleção](./docs/images/collection-screen.png) | ![Cadastro](./docs/images/add-new-movie-screen.png) |
