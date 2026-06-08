@@ -18,10 +18,10 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ## 🔗 Links
 
-| Recurso                            | Link                                                                                          |
-| ---------------------------------- | --------------------------------------------------------------------------------------------- |
-| 🎨 Protótipo no Stitch             | [\_[link do Protótipo no Stitch]](https://stitch.withgoogle.com/projects/1776335920136709795) |
-| 🌐 Site em Produção (GitHub Pages) | [\_[link do GitHub Pages]](https://eduardo-padilha-dev.github.io/app-watchlist/)\_            |
+| Recurso                            | Link                                                                                |
+| ---------------------------------- | ----------------------------------------------------------------------------------- |
+| 🎨 Protótipo no Stitch             | [\_Protótipo no Stitch](https://stitch.withgoogle.com/projects/1776335920136709795) |
+| 🌐 Site em Produção (GitHub Pages) | [\_GitHub Pages](https://eduardo-padilha-dev.github.io/app-watchlist/)\_            |
 
 ---
 
