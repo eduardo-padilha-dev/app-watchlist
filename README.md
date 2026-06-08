@@ -4,8 +4,8 @@
 
 **Nome:** Eduardo Padilha do Nascimento
 **RA:** a2598744
-**Curso:**  Sistemas para Internet 
-**Disciplina:** Desenvolvimento de Páginas Web com Framework e CSS 
+**Curso:** Sistemas para Internet
+**Disciplina:** Desenvolvimento de Páginas Web com Framework e CSS
 **Professor:** Dr. Roni Fabio Banaszewski
 
 ---
@@ -18,10 +18,10 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ## 🔗 Links
 
-| Recurso                            | Link                     |
-| ---------------------------------- | ------------------------ |
-| 🎨 Protótipo no Stitch              | https://stitch.withgoogle.com/projects/1776335920136709795       |
-| 🌐 Site em Produção (GitHub Pages) | _[link do GitHub Pages]_ |
+| Recurso                            | Link                                                       |
+| ---------------------------------- | ---------------------------------------------------------- |
+| 🎨 Protótipo no Stitch             | https://stitch.withgoogle.com/projects/1776335920136709795 |
+| 🌐 Site em Produção (GitHub Pages) | _[link do GitHub Pages]_                                   |
 
 ---
 
@@ -43,16 +43,16 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ### RA1 — Frameworks CSS e Layouts Responsivos
 
-- [X] **ID 01** — Protótipo de interfaces mobile e desktop no Figma (ou Stitch)
-- [ ] **ID 02** — Layout responsivo com Bootstrap usando Flexbox/Grid do framework
-- [ ] **ID 03** — Layout responsivo com CSS puro usando Flexbox ou Grid Layout
-- [ ] **ID 04** — Uso de componentes prontos do Bootstrap (cards, buttons, modals, carousel)
-- [ ] **ID 05** — Layout fluido com unidades relativas (vw, vh, %, em, rem)
-- [ ] **ID 06** — Design System consistente aplicado em toda a aplicação (cores, tipografia, componentes)
-- [ ] **ID 07** — Uso de Sass (SCSS) com variáveis, mixins e funções
-- [ ] **ID 08** — Tipografia responsiva com media queries mobile-first ou função `clamp()`
-- [ ] **ID 09** — Responsividade de imagens com `object-fit` e containers com unidades relativas
-- [ ] **ID 10** — Otimização de imagens com formato WebP e carregamento adaptativo (`srcset` ou Cloudinary)
+- [x] **ID 01** — Protótipo de interfaces mobile e desktop no Figma (ou Stitch)
+- [x] **ID 02** — Layout responsivo com Bootstrap usando Flexbox/Grid do framework
+- [x] **ID 03** — Layout responsivo com CSS puro usando Flexbox ou Grid Layout
+- [x] **ID 04** — Uso de componentes prontos do Bootstrap (cards, buttons, modals, carousel)
+- [x] **ID 05** — Layout fluido com unidades relativas (vw, vh, %, em, rem)
+- [x] **ID 06** — Design System consistente aplicado em toda a aplicação (cores, tipografia, componentes)
+- [x] **ID 07** — Uso de Sass (SCSS) com variáveis, mixins e funções
+- [x] **ID 08** — Tipografia responsiva com media queries mobile-first ou função `clamp()`
+- [x] **ID 09** — Responsividade de imagens com `object-fit` e containers com unidades relativas
+- [x] **ID 10** — Otimização de imagens com formato WebP e carregamento adaptativo (`srcset` ou Cloudinary)
 
 ### RA2 — Formulários e Validações
 
@@ -63,16 +63,16 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ### RA3 — Ferramentas de Desenvolvimento
 
-- [X] **ID 15** — Ambiente configurado com Node.js e NPM
-- [X] **ID 16** — Boas práticas de versionamento no Git/GitHub (branches, `.gitignore`)
-- [X] **ID 17** — README.md padronizado conforme template da disciplina com checklist preenchido
-- [X] **ID 18** — Arquivos do projeto organizados de forma modular
-- [X] **ID 19** — Linters e formatadores configurados (ESLint, Prettier)
+- [x] **ID 15** — Ambiente configurado com Node.js e NPM
+- [x] **ID 16** — Boas práticas de versionamento no Git/GitHub (branches, `.gitignore`)
+- [x] **ID 17** — README.md padronizado conforme template da disciplina com checklist preenchido
+- [x] **ID 18** — Arquivos do projeto organizados de forma modular
+- [x] **ID 19** — Linters e formatadores configurados (ESLint, Prettier)
 
 ### RA4 — Bibliotecas JavaScript
 
-- [X] **ID 20** — jQuery para manipulação do DOM e interatividade (eventos, animações)
-- [X] **ID 21** — Plugin jQuery integrado e configurado (ex: jQuery Mask Plugin)
+- [x] **ID 20** — jQuery para manipulação do DOM e interatividade (eventos, animações)
+- [x] **ID 21** — Plugin jQuery integrado e configurado (ex: jQuery Mask Plugin)
 
 ### RA5 — Requisições Assíncronas
 
@@ -84,35 +84,11 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ## 📄 Páginas da Aplicação
 
-| Página             | Descrição                                                      |
-| ------------------ | -------------------------------------------------------------- |
-| `index.html`       | Home — busca de filmes e séries via OMDb API                   |
-| `minha-lista.html` | Listagem dos títulos cadastrados com filtros por status e tipo |
-| `cadastro.html`    | Formulário de cadastro e edição de títulos na lista            |
-
----
-
-## 📦 Estrutura do Projeto
-
-```
-watchlist/
-├── index.html
-├── minha-lista.html
-├── cadastro.html
-├── assets/
-│   ├── css/
-│   │   ├── style.css
-│   │   └── style.scss
-│   ├── js/
-│   │   ├── main.js
-│   │   ├── api.js
-│   │   └── storage.js
-│   └── img/
-├── db.json              ← JSON Server (API fake)
-├── package.json
-├── .gitignore
-└── README.md
-```
+| Página               | Descrição                                                      |
+| -------------------- | -------------------------------------------------------------- |
+| `index.html`         | Home — busca de filmes e séries via OMDb API                   |
+| `collection.html`    | Listagem dos títulos cadastrados com filtros por status e tipo |
+| `add-new-movie.html` | Formulário de cadastro e edição de títulos na lista            |
 
 ---
 
@@ -146,6 +122,6 @@ npx json-server --watch db.json --port 3000
 
 ## 🖼️ Telas da Aplicação
 
-| Home         | Minha Lista  | Cadastro     |
-| ------------ | ------------ | ------------ |
-| _screenshot_ | _screenshot_ | _screenshot_ |
+| Home                                       | Minha Lista                                      | Cadastro                                            |
+| ------------------------------------------ | ------------------------------------------------ | --------------------------------------------------- |
+| ![alt text](./docs/images/home-screen.png) | ![alt text](./docs/images/collection-screen.png) | ![alt text](./docs/images/add-new-movie-screen.png) |
