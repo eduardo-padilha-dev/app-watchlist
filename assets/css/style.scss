@@ -223,6 +223,19 @@ body {
   }
 }
 
+.poster-wrap {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background-color: var(--color-surface-high);
+
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .btn-add-list {
   @include flex-center; /* Chamando o Mixin */
   background-color: rgba(51, 53, 58, 0.5);

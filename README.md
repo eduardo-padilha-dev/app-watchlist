@@ -56,10 +56,10 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ### RA2 — Formulários e Validações
 
-- [ ] **ID 11** — Validação HTML nativa com campos obrigatórios, tipos e mensagens de erro/sucesso
-- [ ] **ID 12** — Uso de expressões regulares (REGEX) para validações customizadas
-- [ ] **ID 13** — Elementos de seleção em formulários (checkbox, radio, select)
-- [ ] **ID 14** — Leitura e escrita no Web Storage (localStorage/sessionStorage)
+- [x] **ID 11** — Validação HTML nativa com campos obrigatórios, tipos e mensagens de erro/sucesso
+- [x] **ID 12** — Uso de expressões regulares (REGEX) para validações customizadas
+- [x] **ID 13** — Elementos de seleção em formulários (checkbox, radio, select)
+- [x] **ID 14** — Leitura e escrita no Web Storage (localStorage/sessionStorage)
 
 ### RA3 — Ferramentas de Desenvolvimento
 
@@ -76,9 +76,9 @@ O **Watchlist** é uma aplicação web para gerenciar filmes e séries que você
 
 ### RA5 — Requisições Assíncronas
 
-- [ ] **ID 22** — Requisições assíncronas para API fake (JSON Server) para persistir dados do formulário
-- [ ] **ID 23** — Requisições assíncronas para API fake (JSON Server) para exibir dados na página
-- [ ] **ID 24** — Requisições assíncronas para API pública real (OMDb API), exibindo dados e tratando erros
+- [x] **ID 22** — Requisições assíncronas para API fake (JSON Server) para persistir dados do formulário
+- [x] **ID 23** — Requisições assíncronas para API fake (JSON Server) para exibir dados na página
+- [x] **ID 24** — Requisições assíncronas para API pública real (OMDb API), exibindo dados e tratando erros
 
 ---
 
@@ -110,7 +110,7 @@ cd app-watchlist
 npm install
 
 # 3. Inicie o JSON Server (API fake)
-npx json-server --watch db.json --port 3000
+npm start
 
 # 4. Abra o index.html no navegador
 # (ou use a extensão Live Server no VS Code)

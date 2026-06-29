@@ -1,5 +1,11 @@
 (function ($) {
   const PLACEHOLDER_POSTER = 'https://via.placeholder.com/300x450/13161F/E8B44B?text=SEM+POSTER';
+  const TRENDING_IMDB_IDS = ['tt4154796', 'tt15398776', 'tt9362722', 'tt0903747'];
+
+  // ID 12 - REGEX para validar o título: precisa ter ao menos 2 caracteres
+  // (letras, números e acentos) e não pode conter símbolos como @ # $ %.
+  const TITULO_REGEX = /^[A-Za-zÀ-ÿ0-9][A-Za-zÀ-ÿ0-9\s:'\-,.!?]{1,119}$/;
+  const NOTA_REGEX = /^(5([.,]0)?|[0-4]([.,][0-9])?)$/;
 
   function escapeHtml(value) {
     return String(value || '')
@@ -83,6 +89,99 @@
       hideError();
     }
 
+    async function addMovieToList(movie) {
+      const items = await window.WatchlistAPI.getItems();
+      const exists = items.some(
+        (item) =>
+          String(item.titulo || '').toLowerCase() === movie.titulo.toLowerCase() &&
+          String(item.ano || '') === String(movie.ano || ''),
+      );
+
+      if (exists) {
+        showToast('Este título já está na sua lista.', true);
+        return;
+      }
+
+      await window.WatchlistAPI.createItem({
+        titulo: movie.titulo,
+        tipo: movie.tipo || 'filme',
+        genero: movie.genero || '',
+        plataforma: '',
+        status: 'quero-ver',
+        nota: null,
+        comentario: '',
+        poster: movie.poster || '',
+        ano: movie.ano || '',
+        dataCadastro: formatDateISO(),
+      });
+
+      showToast('Título adicionado à lista!');
+    }
+
+    function renderTrending(items) {
+      const html = items
+        .map(function (item) {
+          const meta = [item.genero, item.duracao].filter(Boolean).join(' • ');
+
+          return `
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
+                <div class="movie-card-img-wrapper position-relative overflow-hidden">
+                  <img
+                    src="${escapeHtml(item.poster || PLACEHOLDER_POSTER)}"
+                    alt="${escapeHtml(item.titulo)}"
+                    class="movie-card-img w-100 h-100 object-fit-cover"
+                    onerror="this.src='${PLACEHOLDER_POSTER}'"
+                  />
+                  <div
+                    class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
+                  >
+                    <span class="material-symbols-outlined text-primary-container fs-14px icon-fill">star</span>
+                    <span class="font-mono text-primary-container fw-bold fs-12px">${escapeHtml(item.imdbRating || '-')}</span>
+                  </div>
+                </div>
+                <div class="p-4 d-flex flex-column flex-grow-1">
+                  <h3 class="fs-5 fw-semibold mb-1 movie-title">${escapeHtml(item.titulo)}</h3>
+                  <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
+                    ${escapeHtml(meta || item.tipo || 'Título')}
+                  </p>
+                  <button
+                    class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2 btn-add-trending"
+                    data-imdb-id="${escapeHtml(item.imdbID)}"
+                  >
+                    <span class="material-symbols-outlined fs-18px">add</span>
+                    Adicionar à Lista
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+
+      $('#trendingGrid').html(html);
+    }
+
+    async function loadTrending() {
+      const $trendingGrid = $('#trendingGrid');
+      if (!$trendingGrid.length) return;
+
+      try {
+        const trendingItems = await Promise.all(
+          TRENDING_IMDB_IDS.map((imdbID) => window.WatchlistAPI.getOmdbById(imdbID)),
+        );
+        renderTrending(trendingItems);
+      } catch (_error) {
+        $trendingGrid.html(`
+          <div class="col-12">
+            <div class="alert alert-danger mb-0">
+              Não foi possível carregar os títulos em alta pela OMDb.
+            </div>
+          </div>
+        `);
+      }
+    }
+
     $searchForm.on('submit', async function (event) {
       event.preventDefault();
       hideError();
@@ -110,32 +209,18 @@
       }
 
       try {
-        const items = await window.WatchlistAPI.getItems();
-        const exists = items.some(
-          (item) =>
-            String(item.titulo || '').toLowerCase() === currentResult.titulo.toLowerCase() &&
-            String(item.ano || '') === String(currentResult.ano || ''),
-        );
+        await addMovieToList(currentResult);
+      } catch (error) {
+        showToast(error.message || 'Não foi possível adicionar o título.', true);
+      }
+    });
 
-        if (exists) {
-          showToast('Este título já está na sua lista.', true);
-          return;
-        }
+    $('#trendingGrid').on('click', '.btn-add-trending', async function () {
+      const imdbID = $(this).data('imdb-id');
 
-        await window.WatchlistAPI.createItem({
-          titulo: currentResult.titulo,
-          tipo: currentResult.tipo || 'filme',
-          genero: currentResult.genero || '',
-          plataforma: '',
-          status: 'quero-ver',
-          nota: null,
-          comentario: '',
-          poster: currentResult.poster || '',
-          ano: currentResult.ano || '',
-          dataCadastro: formatDateISO(),
-        });
-
-        showToast('Título adicionado à lista!');
+      try {
+        const movie = await window.WatchlistAPI.getOmdbById(imdbID);
+        await addMovieToList(movie);
       } catch (error) {
         showToast(error.message || 'Não foi possível adicionar o título.', true);
       }
@@ -146,6 +231,8 @@
       currentResult = lastSearch;
       renderResult(lastSearch);
     }
+
+    loadTrending();
   }
 
   async function initRegisterPage() {
@@ -155,26 +242,35 @@
     const params = new URLSearchParams(window.location.search);
     const editId = params.get('id');
     let currentEditItem = null;
-    let selectedRating = 0;
 
-    function setRating(value) {
-      selectedRating = Number(value) || 0;
-      $('#nota').val(selectedRating || '');
-      $('#notaLabel').text(selectedRating ? `${selectedRating}/5` : 'Sem nota');
-
-      $('#starRating .star-input').each(function () {
-        const starValue = Number($(this).data('value'));
-        $(this)
-          .toggleClass('bi-star-fill', starValue <= selectedRating)
-          .toggleClass('bi-star', starValue > selectedRating);
-      });
+    // ID 21 - jQuery Mask Plugin aplicado ao campo de nota (0.0 a 5.0)
+    if ($.fn.mask) {
+      $('#nota').mask('0.0', { reverse: false });
     }
 
-    $('#starRating .star-input').on('click', function () {
-      setRating($(this).data('value'));
-    });
+    // ID 12 - validação customizada com REGEX no título
+    function validateTitulo() {
+      const value = $('#titulo').val().trim();
+      const isValid = TITULO_REGEX.test(value);
+      $('#titulo')
+        .toggleClass('is-invalid', !isValid)
+        .toggleClass('is-valid', isValid && value.length > 0);
+      return isValid;
+    }
 
-    $('#comentario').on('input', function () {
+    function validateNota() {
+      const value = $('#nota').val().trim();
+      const isValid = !value || NOTA_REGEX.test(value);
+      $('#nota')
+        .toggleClass('is-invalid', !isValid)
+        .toggleClass('is-valid', isValid && !!value);
+      return isValid;
+    }
+
+    $('#titulo').on('input blur', validateTitulo);
+    $('#nota').on('input blur', validateNota);
+
+    $('#comentario, #sinopse').on('input', function () {
       $('#charCount').text($(this).val().length);
     });
 
@@ -182,14 +278,27 @@
       try {
         const item = await window.WatchlistAPI.getItemById(editId);
         currentEditItem = item;
+
+        $('#formTitle').text('Editar Conteúdo');
         $('#titulo').val(item.titulo || '');
         $('#tipo').val(item.tipo || '');
         $('#status').val(item.status || '');
         $('#genero').val(item.genero || '');
-        $('#comentario')
+        $('#nota').val(item.nota ? Number(item.nota).toFixed(1) : '');
+        $('#sinopse, #comentario')
           .val(item.comentario || '')
           .trigger('input');
-        setRating(item.nota || 0);
+
+        // ID 13 - restaura checkboxes de plataforma marcados anteriormente
+        const plataformas = (item.plataforma || '').split(',').map((p) => p.trim());
+        $('.check-plataforma').each(function () {
+          $(this).prop('checked', plataformas.includes($(this).val()));
+        });
+
+        // ID 13 - restaura o radio "assistiu no cinema"
+        if (item.assistiuCinema === 'sim') {
+          $('#cinemaSim').prop('checked', true);
+        }
       } catch (_error) {
         showToast('Não foi possível carregar o item para edição.', true);
       }
@@ -199,19 +308,43 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (!this.checkValidity()) {
+      const tituloValido = validateTitulo();
+      const notaValida = validateNota();
+
+      if (!this.checkValidity() || !tituloValido || !notaValida) {
         $(this).addClass('was-validated');
+        if (!tituloValido) {
+          $('#titulo').addClass('is-invalid');
+        }
+        if (!notaValida) {
+          $('#nota').addClass('is-invalid');
+        }
         return;
       }
+
+      // ID 13 - coleta os checkboxes marcados de plataforma
+      const plataformasSelecionadas = $('.check-plataforma:checked')
+        .map(function () {
+          return $(this).val();
+        })
+        .get()
+        .join(', ');
+
+      // ID 13 - coleta o radio "assistiu no cinema"
+      const assistiuCinema = $('input[name="cinema"]:checked').val() || 'nao';
+
+      const notaTexto = $('#nota').val().trim();
+      const notaNumero = notaTexto ? parseFloat(notaTexto.replace(',', '.')) : null;
 
       const payload = {
         titulo: $('#titulo').val().trim(),
         tipo: $('#tipo').val(),
         genero: $('#genero').val() || '',
-        plataforma: currentEditItem?.plataforma || '',
+        plataforma: plataformasSelecionadas || currentEditItem?.plataforma || '',
         status: $('#status').val(),
-        nota: selectedRating || null,
-        comentario: $('#comentario').val().trim(),
+        nota: Number.isFinite(notaNumero) ? notaNumero : null,
+        comentario: ($('#sinopse').val() || $('#comentario').val() || '').trim(),
+        assistiuCinema,
         poster: currentEditItem?.poster || '',
         ano: currentEditItem?.ano || '',
         dataCadastro: currentEditItem?.dataCadastro || formatDateISO(),
@@ -226,13 +359,25 @@
           showToast('Título salvo na lista!');
         }
 
+        // ID 14 - lembra o último status usado, para já vir selecionado
+        // na próxima vez que o usuário cadastrar um título
+        window.WatchlistStorage.saveLastStatusUsed(payload.status);
+
         setTimeout(function () {
-          window.location.href = 'my-list.html';
+          window.location.href = 'collection.html';
         }, 900);
       } catch (error) {
         showToast(error.message || 'Não foi possível salvar o título.', true);
       }
     });
+
+    // ID 14 - pré-seleciona o status mais usado pelo usuário, lido do localStorage
+    if (!editId) {
+      const lastStatus = window.WatchlistStorage.getLastStatusUsed();
+      if (lastStatus) {
+        $('#status').val(lastStatus);
+      }
+    }
   }
 
   async function initMyListPage() {
@@ -240,17 +385,31 @@
     if (!$grid.length) return;
 
     let items = [];
-    let activeStatus = 'todos';
+    let activeStatus = window.WatchlistStorage.getFiltroPreferido();
     let activeType = 'todos';
     let deleteId = null;
     const deleteModal = document.getElementById('modalExcluir')
       ? new bootstrap.Modal(document.getElementById('modalExcluir'))
       : null;
 
+    // ID 14 - aplica visualmente o filtro de status lido do localStorage
+    $('#filtros button')
+      .removeClass('active')
+      .filter(function () {
+        return $(this).data('filter') === activeStatus;
+      })
+      .addClass('active');
+
     function renderStars(rating) {
-      const value = Number(rating) || 0;
+      const value = Math.min(Math.max(Number(rating) || 0, 0), 5);
       return Array.from({ length: 5 }, function (_, index) {
-        return index < value ? '<i class="bi bi-star-fill"></i>' : '<i class="bi bi-star"></i>';
+        if (value >= index + 1) {
+          return '<i class="bi bi-star-fill"></i>';
+        }
+        if (value > index) {
+          return '<i class="bi bi-star-half"></i>';
+        }
+        return '<i class="bi bi-star"></i>';
       }).join('');
     }
 
@@ -276,7 +435,7 @@
       const html = filtered
         .map(function (item) {
           return `
-						<div class="col" data-status="${escapeHtml(item.status)}" data-tipo="${escapeHtml(item.tipo)}">
+						<div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-status="${escapeHtml(item.status)}" data-tipo="${escapeHtml(item.tipo)}">
 							<div class="card movie-card h-100">
 								<div class="poster-wrap">
 									<img
@@ -295,7 +454,7 @@
 									<p class="card-meta font-mono">${escapeHtml(item.genero || 'Sem gênero')}</p>
 									<div class="star-rating mb-3">${renderStars(item.nota)}</div>
 									<div class="d-flex gap-2 mt-auto pt-3 border-top" style="border-color: var(--border) !important">
-										<a href="film-register.html?id=${encodeURIComponent(item.id)}" class="btn btn-outline-secondary btn-sm flex-fill">
+										<a href="add-new-movie.html?id=${encodeURIComponent(item.id)}" class="btn btn-outline-secondary btn-sm flex-fill">
 											<i class="bi bi-pencil me-1"></i> Editar
 										</a>
 										<button class="btn btn-outline-danger btn-sm flex-fill btn-excluir" data-id="${escapeHtml(item.id)}">
@@ -323,10 +482,11 @@
       }
     }
 
-    $('#filtros .filter-btn').on('click', function () {
-      $('#filtros .filter-btn').removeClass('active');
+    $('#filtros button').on('click', function () {
+      $('#filtros button').removeClass('active');
       $(this).addClass('active');
       activeStatus = $(this).data('filter');
+      window.WatchlistStorage.saveFiltroPreferido(activeStatus);
       renderList();
     });
 

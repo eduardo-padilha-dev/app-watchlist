@@ -10,6 +10,10 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
     <link href="assets/css/style.css" rel="stylesheet" />
   </head>
   <body class="d-flex flex-column min-vh-100 bg-surface-lowest text-on-surface">
@@ -57,23 +61,51 @@
       <div class="position-relative z-1 w-100 px-3 text-center max-w-900px">
         <h1 class="font-bebas mb-5 fs-hero letter-spacing-neg">Sua história começa aqui.</h1>
 
-        <form class="mx-auto max-w-672px">
+        <form class="mx-auto max-w-672px" id="searchForm">
           <div
             class="d-flex align-items-center bg-surface-high bg-opacity-75 rounded-pill p-2 border-ghost border-ghost-focus transition-all backdrop-blur-12"
           >
             <span class="material-symbols-outlined ms-3 text-outline">search</span>
             <input
               type="text"
+              id="searchInput"
               class="form-control bg-transparent border-0 shadow-none px-3 py-2 fs-5"
               placeholder="Pesquise Filmes"
+              required
             />
             <button
+              type="submit"
               class="btn btn-primary-custom rounded-pill px-4 px-md-5 py-2 py-md-3 ms-2 shadow-lg"
             >
               Pesquisar
             </button>
           </div>
         </form>
+
+        <div id="searchResult" class="mt-4 d-none">
+          <div
+            class="movie-card bg-surface rounded-4 overflow-hidden mx-auto text-start max-w-672px"
+          >
+            <div class="row g-0">
+              <div class="col-4">
+                <img id="resultPoster" src="" alt="Poster" class="w-100 h-100 object-fit-cover" />
+              </div>
+              <div class="col-8 p-4">
+                <h5 id="resultTitle" class="font-bebas fs-4 mb-1"></h5>
+                <p id="resultMeta" class="font-mono text-primary-container small mb-2"></p>
+                <p id="resultPlot" class="text-on-surface-variant small mb-3"></p>
+                <button class="btn btn-primary-custom btn-sm rounded-pill px-3" id="addToListBtn">
+                  <span class="material-symbols-outlined fs-16px align-middle">add</span>
+                  Adicionar à Lista
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="searchError" class="alert alert-danger mt-3 d-none mx-auto max-w-672px">
+          <span id="searchErrorMsg">Nenhum resultado encontrado.</span>
+        </div>
       </div>
     </section>
 
@@ -89,144 +121,21 @@
         <div class="flex-grow-1 mx-4 mx-md-5 mb-3 divider-gradient"></div>
       </div>
 
-      <div class="row g-4">
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
-            <div class="movie-card-img-wrapper position-relative overflow-hidden">
-              <picture>
-                <source
-                  srcset="
-                    https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=300&auto=format&fit=crop&fm=webp
-                  "
-                  type="image/webp"
-                />
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlQcnKRc_Tjpi7Lq12CihGVoGmtvDkivd_rdbKf4zbHBg_VMm02_EUmgHGYMMcYkeiliZhllKNojZ0-VlhyA2SEtFHduZ-A5Dft0ntwUpi4HW7uj7_gf1eMNVBMqtyXxdV8bc5J-WPlSdwRCYCd2b-vKiQGdy84s3jywYzVtgVkQY-SzzIiqXyJxe5tq9rxysdxcDTEy2tA4ChqoZ0CUlAQV7Kl3U5Tfp4pfAW4TtJYheAgGZIwqf-QbROvF_yAuZgLPgomk7rX1c"
-                  alt="Midnight Protocol"
-                  class="movie-card-img w-100 h-100 object-fit-cover"
-                />
-              </picture>
-              <div
-                class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
-              >
-                <span class="material-symbols-outlined text-primary-container fs-14px icon-fill"
-                  >star</span
-                >
-                <span class="font-mono text-primary-container fw-bold fs-12px">8.4</span>
-              </div>
-            </div>
-            <div class="p-4 d-flex flex-column flex-grow-1">
-              <h3 class="fs-5 fw-semibold mb-1 movie-title">Midnight Protocol</h3>
-              <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
-                Sci-Fi • 124 MIN
-              </p>
-              <button
-                class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2"
-              >
-                <span class="material-symbols-outlined fs-18px">add</span>
-                Adicionar à Lista
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
-            <div class="movie-card-img-wrapper position-relative overflow-hidden">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT1Bro-PY6bZkv06fgORUf2p1Zc_Dy7y5OUaXAfHmk1W_2XgSiUWEAkcJ2yhF9NeMknvWlUu6pb8swIYd7dIJoBQkB9k0DwoEw3-kbkXMnhq5DQlUK9M1FxlBT-iibuEv5cHDJTN7v55ETzEbSm4uPhDP8dtNBb8SC9kYkUWY3uijO4WoVW9FEpG0YXIK88w3QgRPigSBZNmG9Zspfn6Fm0zS_017WVsXJF_otiwxfQeyNaK2KviuFOlqZNqWWu9TGu6WAWpx4ep4"
-                alt="The Last Drive"
-                class="movie-card-img w-100 h-100 object-fit-cover"
-              />
-              <div
-                class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
-              >
-                <span class="material-symbols-outlined text-primary-container fs-14px icon-fill"
-                  >star</span
-                >
-                <span class="font-mono text-primary-container fw-bold fs-12px">9.1</span>
-              </div>
-            </div>
-            <div class="p-4 d-flex flex-column flex-grow-1">
-              <h3 class="fs-5 fw-semibold mb-1 movie-title">The Last Drive</h3>
-              <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
-                Drama • 142 MIN
-              </p>
-              <button
-                class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2"
-              >
-                <span class="material-symbols-outlined fs-18px">add</span>
-                Adicionar à Lista
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
-            <div class="movie-card-img-wrapper position-relative overflow-hidden">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLZ1upDRTLYXScajILexvZiclB5avb6jCA0hIJPKDAk4bqkw-_1pJ1mj9y-t3ftTI7G2l3c48l_0_N5oRMk3ExRlKLk0eEdyVMKT33vQSwA6nZfhMpst51HXPGz3JkSGRymrXM38drQXIwx593k0R_pXiTcaY3VkIiKCqeFfXfKBhWZbDTmMbbwdMfwJ89tKHQU1TS7UNj53n0vMnRiZTJydTqWYR0AosYU2CV7y1bMZYeDdv10z3SD2o7TahkEzf1QiSSuD5FoMg"
-                alt="Shadow Frame"
-                class="movie-card-img w-100 h-100 object-fit-cover"
-              />
-              <div
-                class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
-              >
-                <span class="material-symbols-outlined text-primary-container fs-14px icon-fill"
-                  >star</span
-                >
-                <span class="font-mono text-primary-container fw-bold fs-12px">7.8</span>
-              </div>
-            </div>
-            <div class="p-4 d-flex flex-column flex-grow-1">
-              <h3 class="fs-5 fw-semibold mb-1 movie-title">Shadow Frame</h3>
-              <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
-                Thriller • 110 MIN
-              </p>
-              <button
-                class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2"
-              >
-                <span class="material-symbols-outlined fs-18px">add</span>
-                Adicionar à Lista
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="movie-card d-flex flex-column bg-surface rounded-4 overflow-hidden h-100">
-            <div class="movie-card-img-wrapper position-relative overflow-hidden">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX15oxpub9e8_VRXqC1VwgSMBXfJWqt4Pu11CdhgwulQuMp7cOAUO9WTdlbcRznGSUaAvL_O_8SV9t0XjSDyO5xECJ1C0jtEYKeDGIyTpZZ2S14HEZktGJbwAk-_A_dpdWTtyjn5s-YaYygXDM23dPqJIv9An2lDk2kqTyRbXG82OZIycYKqTSMwPSQOfPHb6CrIXTdTeMeSslwQSJaWIDDar6Hs4C4BLnnNG_Z0nlH9Ih124vw-wxXNc1bmAcFWoQIOwHXTdCpPQ"
-                alt="Horizon Bound"
-                class="movie-card-img w-100 h-100 object-fit-cover"
-              />
-              <div
-                class="position-absolute top-0 end-0 m-3 bg-dark bg-opacity-75 rounded-pill px-3 py-1 d-flex align-items-center gap-1 backdrop-blur-12"
-              >
-                <span class="material-symbols-outlined text-primary-container fs-14px icon-fill"
-                  >star</span
-                >
-                <span class="font-mono text-primary-container fw-bold fs-12px">8.9</span>
-              </div>
-            </div>
-            <div class="p-4 d-flex flex-column flex-grow-1">
-              <h3 class="fs-5 fw-semibold mb-1 movie-title">Horizon Bound</h3>
-              <p class="font-mono text-outline text-uppercase mb-4 fs-10px letter-spacing-01">
-                Adventure • 138 MIN
-              </p>
-              <button
-                class="btn btn-add-list mt-auto py-2 rounded-3 fs-6 fw-semibold d-flex align-items-center justify-content-center gap-2"
-              >
-                <span class="material-symbols-outlined fs-18px">add</span>
-                Adicionar à Lista
-              </button>
-            </div>
-          </div>
+      <div class="row g-4" id="trendingGrid">
+        <div class="col-12 text-center py-5 text-on-surface-variant">
+          Carregando títulos reais da OMDb...
         </div>
       </div>
     </main>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="wlToast" class="toast" role="alert">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i id="toastIcon" class="bi bi-check-circle-fill text-success"></i>
+          <span id="toastMsg">Título adicionado à lista!</span>
+        </div>
+      </div>
+    </div>
 
     <footer class="bg-surface-lowest border-top border-secondary border-opacity-10 mt-auto">
       <div class="container py-5">
@@ -249,5 +158,9 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>

@@ -1,4 +1,73 @@
 {
-  "itens": [],
+  "itens": [
+    {
+      "titulo": "Pirates of the Caribbean: The Curse of the Black Pearl",
+      "tipo": "filme",
+      "genero": "Ação",
+      "plataforma": "",
+      "status": "quero-ver",
+      "nota": 5,
+      "comentario": "muito show",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDhlMzEyNzItMTA5Mi00YWRhLThlNTktYTQyMTA0MDIyNDEyXkEyXkFqcGc@._V1_SX300.jpg",
+      "ano": "2003",
+      "dataCadastro": "2026-04-14",
+      "id": 2
+    },
+    {
+      "titulo": "The Fast and the Furious",
+      "tipo": "filme",
+      "genero": "Ação",
+      "plataforma": "Netflix, Prime Video",
+      "status": "quero-ver",
+      "nota": 5,
+      "comentario": "Muito bom o filme, me da uma nostalgia dos filmes antigos de acao",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGRiMDE1NTMtMThmZS00YjE4LWI1ODQtNjRkZGZlOTg2MGE1XkEyXkFqcGc@._V1_SX300.jpg",
+      "ano": "2001",
+      "dataCadastro": "2026-06-28",
+      "id": 3,
+      "assistiuCinema": "sim"
+    },
+    {
+      "titulo": "Black Mirror",
+      "tipo": "serie",
+      "genero": "Ficção Científica",
+      "plataforma": "",
+      "status": "assistindo",
+      "nota": 4.5,
+      "comentario": "",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODcxMWI2NDMtYTc3NC00OTZjLWFmNmUtM2NmY2I1ODkxYzczXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "ano": "2011–",
+      "dataCadastro": "2026-06-28",
+      "id": 4,
+      "assistiuCinema": "nao"
+    },
+    {
+      "titulo": "Avengers: Endgame",
+      "tipo": "filme",
+      "genero": "Ação",
+      "plataforma": "Max",
+      "status": "abandonado",
+      "nota": 3,
+      "comentario": "",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "ano": "2019",
+      "dataCadastro": "2026-06-28",
+      "id": 5,
+      "assistiuCinema": "nao"
+    },
+    {
+      "titulo": "Oppenheimer",
+      "tipo": "filme",
+      "genero": "Biography",
+      "plataforma": "",
+      "status": "quero-ver",
+      "nota": null,
+      "comentario": "",
+      "poster": "https://m.media-amazon.com/images/M/MV5BN2JkMDc5MGQtZjg3YS00NmFiLWIyZmQtZTJmNTM5MjVmYTQ4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "ano": "2023",
+      "dataCadastro": "2026-06-28",
+      "id": 6
+    }
+  ],
   "generos": []
 }
